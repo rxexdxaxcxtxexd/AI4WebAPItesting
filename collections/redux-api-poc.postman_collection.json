@@ -1,0 +1,207 @@
+{
+	"info": {
+		"_postman_id": "redux-api-poc-001",
+		"name": "BargeOps Redux API - POC (HealthCheck)",
+		"description": "Proof of Concept collection for Redux API HealthCheck endpoint testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "HealthCheck",
+			"item": [
+				{
+					"name": "CheckHealth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// POC Test: Validate Redux API Response",
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response time is acceptable', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"pm.test('Response has required headers', function () {",
+									"    pm.response.to.have.header('Content-Type');",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+									"});",
+									"",
+									"pm.test('Response has Status field', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Status');",
+									"    pm.expect(jsonData.Status).to.be.oneOf(['Healthy', 'Unhealthy']);",
+									"});",
+									"",
+									"pm.test('Response has TotalDuration field', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('TotalDuration');",
+									"});",
+									"",
+									"pm.test('Response has Entries field', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Entries');",
+									"    pm.expect(jsonData.Entries).to.be.an('object');",
+									"});",
+									"",
+									"// Store response for comparison",
+									"pm.environment.set('redux_healthcheck_response', JSON.stringify(pm.response.json()));",
+									"pm.environment.set('redux_healthcheck_status', pm.response.code);",
+									"pm.environment.set('redux_healthcheck_time', pm.response.responseTime);",
+									"",
+									"console.log('Redux API Response:', JSON.stringify(pm.response.json(), null, 2));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/healthcheck/CheckHealth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"healthcheck",
+								"CheckHealth"
+							]
+						},
+						"description": "Gets application health check results from Redux API. Returns Status, TotalDuration, and Entries fields."
+					},
+					"response": []
+				},
+				{
+					"name": "Ping (NEW)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// POC Test: Validate Redux Ping Endpoint (NEW)",
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response time is acceptable', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"pm.test('Response has Status field', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Status');",
+									"    pm.expect(jsonData.Status).to.equal('OK');",
+									"});",
+									"",
+									"pm.test('Response has Timestamp field', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Timestamp');",
+									"});",
+									"",
+									"pm.test('Timestamp is recent', function () {",
+									"    const jsonData = pm.response.json();",
+									"    const responseTime = new Date(jsonData.Timestamp);",
+									"    const now = new Date();",
+									"    const diffSeconds = (now - responseTime) / 1000;",
+									"    pm.expect(diffSeconds).to.be.below(60); // Within last minute",
+									"});",
+									"",
+									"// Store response",
+									"pm.environment.set('redux_ping_response', JSON.stringify(pm.response.json()));",
+									"pm.environment.set('redux_ping_status', pm.response.code);",
+									"",
+									"console.log('Redux Ping Response:', JSON.stringify(pm.response.json(), null, 2));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/healthcheck/ping",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"healthcheck",
+								"ping"
+							]
+						},
+						"description": "Simple ping endpoint (NEW in Redux). Returns OK status and UTC timestamp. This endpoint does not exist in the Original API."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{apiKey}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{clientId}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Pre-request script for Redux API",
+					"console.log('===== REDUX API REQUEST =====');",
+					"console.log('Making request to: ' + pm.request.url);",
+					"console.log('Timestamp: ' + new Date().toISOString());"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Collection-level test script",
+					"console.log('Response Status:', pm.response.code);",
+					"console.log('Response Time:', pm.response.responseTime + 'ms');"
+				]
+			}
+		}
+	]
+}

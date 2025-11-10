@@ -1,0 +1,1135 @@
+{
+  "collection": {
+    "_": {
+      "postman_id": "redux-api-poc-001"
+    },
+    "item": [
+      {
+        "id": "05e0bef2-ec39-4432-85c5-1ac8da68d559",
+        "name": "HealthCheck",
+        "item": [
+          {
+            "id": "8b5f99f2-1a07-4238-a200-e9cbc56a95e4",
+            "name": "CheckHealth",
+            "request": {
+              "description": {
+                "content": "Gets application health check results from Redux API. Returns Status, TotalDuration, and Entries fields.",
+                "type": "text/plain"
+              },
+              "url": {
+                "path": [
+                  "api",
+                  "healthcheck",
+                  "CheckHealth"
+                ],
+                "host": [
+                  "{{baseUrl}}"
+                ],
+                "query": [],
+                "variable": []
+              },
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Basic {{apiKey}}"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "method": "GET"
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "id": "38d28767-d50a-4e1c-893b-25590d338a98",
+                  "type": "text/javascript",
+                  "exec": [
+                    "// POC Test: Validate Redux API Response",
+                    "pm.test('Status code is 200', function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "",
+                    "pm.test('Response time is acceptable', function () {",
+                    "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                    "});",
+                    "",
+                    "pm.test('Response has required headers', function () {",
+                    "    pm.response.to.have.header('Content-Type');",
+                    "    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+                    "});",
+                    "",
+                    "pm.test('Response has Status field', function () {",
+                    "    const jsonData = pm.response.json();",
+                    "    pm.expect(jsonData).to.have.property('Status');",
+                    "    pm.expect(jsonData.Status).to.be.oneOf(['Healthy', 'Unhealthy']);",
+                    "});",
+                    "",
+                    "pm.test('Response has TotalDuration field', function () {",
+                    "    const jsonData = pm.response.json();",
+                    "    pm.expect(jsonData).to.have.property('TotalDuration');",
+                    "});",
+                    "",
+                    "pm.test('Response has Entries field', function () {",
+                    "    const jsonData = pm.response.json();",
+                    "    pm.expect(jsonData).to.have.property('Entries');",
+                    "    pm.expect(jsonData.Entries).to.be.an('object');",
+                    "});",
+                    "",
+                    "// Store response for comparison",
+                    "pm.environment.set('redux_healthcheck_response', JSON.stringify(pm.response.json()));",
+                    "pm.environment.set('redux_healthcheck_status', pm.response.code);",
+                    "pm.environment.set('redux_healthcheck_time', pm.response.responseTime);",
+                    "",
+                    "console.log('Redux API Response:', JSON.stringify(pm.response.json(), null, 2));"
+                  ],
+                  "_lastExecutionId": "d019bcc4-2f13-496b-8456-9b042175c0ee"
+                }
+              }
+            ]
+          },
+          {
+            "id": "3bc3065d-67fc-4d8a-9622-7e655b2bdd59",
+            "name": "Ping (NEW)",
+            "request": {
+              "description": {
+                "content": "Simple ping endpoint (NEW in Redux). Returns OK status and UTC timestamp. This endpoint does not exist in the Original API.",
+                "type": "text/plain"
+              },
+              "url": {
+                "path": [
+                  "api",
+                  "healthcheck",
+                  "ping"
+                ],
+                "host": [
+                  "{{baseUrl}}"
+                ],
+                "query": [],
+                "variable": []
+              },
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Basic {{apiKey}}"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "method": "GET"
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "id": "36a72dd6-a8ba-422b-82ff-03ad438ea583",
+                  "type": "text/javascript",
+                  "exec": [
+                    "// POC Test: Validate Redux Ping Endpoint (NEW)",
+                    "pm.test('Status code is 200', function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "",
+                    "pm.test('Response time is acceptable', function () {",
+                    "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                    "});",
+                    "",
+                    "pm.test('Response has Status field', function () {",
+                    "    const jsonData = pm.response.json();",
+                    "    pm.expect(jsonData).to.have.property('Status');",
+                    "    pm.expect(jsonData.Status).to.equal('OK');",
+                    "});",
+                    "",
+                    "pm.test('Response has Timestamp field', function () {",
+                    "    const jsonData = pm.response.json();",
+                    "    pm.expect(jsonData).to.have.property('Timestamp');",
+                    "});",
+                    "",
+                    "pm.test('Timestamp is recent', function () {",
+                    "    const jsonData = pm.response.json();",
+                    "    const responseTime = new Date(jsonData.Timestamp);",
+                    "    const now = new Date();",
+                    "    const diffSeconds = (now - responseTime) / 1000;",
+                    "    pm.expect(diffSeconds).to.be.below(60); // Within last minute",
+                    "});",
+                    "",
+                    "// Store response",
+                    "pm.environment.set('redux_ping_response', JSON.stringify(pm.response.json()));",
+                    "pm.environment.set('redux_ping_status', pm.response.code);",
+                    "",
+                    "console.log('Redux Ping Response:', JSON.stringify(pm.response.json(), null, 2));"
+                  ],
+                  "_lastExecutionId": "35040b3d-b0e5-4f20-9e27-8bbc4d1e1b7f"
+                }
+              }
+            ]
+          }
+        ],
+        "event": []
+      }
+    ],
+    "auth": {
+      "type": "basic",
+      "basic": [
+        {
+          "type": "string",
+          "value": "{{apiKey}}",
+          "key": "password"
+        },
+        {
+          "type": "string",
+          "value": "{{clientId}}",
+          "key": "username"
+        }
+      ]
+    },
+    "event": [
+      {
+        "listen": "prerequest",
+        "script": {
+          "id": "95d72481-d841-4d9e-894e-ae7963817b47",
+          "type": "text/javascript",
+          "exec": [
+            "// Pre-request script for Redux API",
+            "console.log('===== REDUX API REQUEST =====');",
+            "console.log('Making request to: ' + pm.request.url);",
+            "console.log('Timestamp: ' + new Date().toISOString());"
+          ],
+          "_lastExecutionId": "b7141f32-2881-45f8-a891-4a15a0616e8b"
+        }
+      },
+      {
+        "listen": "test",
+        "script": {
+          "id": "4f6a4e45-0684-419a-808e-c2dc8d6baf39",
+          "type": "text/javascript",
+          "exec": [
+            "// Collection-level test script",
+            "console.log('Response Status:', pm.response.code);",
+            "console.log('Response Time:', pm.response.responseTime + 'ms');"
+          ],
+          "_lastExecutionId": "dfb4ccb5-5d83-4911-931d-803731f8ab57"
+        }
+      }
+    ],
+    "variable": [],
+    "info": {
+      "_postman_id": "redux-api-poc-001",
+      "name": "BargeOps Redux API - POC (HealthCheck)",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "description": {
+        "content": "Proof of Concept collection for Redux API HealthCheck endpoint testing",
+        "type": "text/plain"
+      }
+    }
+  },
+  "environment": {
+    "_": {
+      "postman_variable_scope": "environment",
+      "postman_exported_at": "2025-11-10T12:00:00.000Z",
+      "postman_exported_using": "Claude Code AI Generator"
+    },
+    "id": "redux-api-env-001",
+    "name": "BargeOps Redux API (Local)",
+    "values": [
+      {
+        "type": "any",
+        "value": "https://localhost:5001",
+        "key": "baseUrl"
+      },
+      {
+        "type": "any",
+        "value": "test-api-key-redux",
+        "key": "apiKey"
+      },
+      {
+        "type": "any",
+        "value": "test-client",
+        "key": "clientId"
+      },
+      {
+        "type": "any",
+        "value": "{\"Status\":\"Unhealthy\",\"TotalDuration\":\"00:00:00.4632822\",\"Entries\":{\"RepositoryDbHealthCheck\":{\"Data\":{},\"Description\":\"Database connection is unhealthy. SqlException\",\"Duration\":\"00:00:00.4301046\",\"Exception\":null,\"Status\":\"Unhealthy\",\"Tags\":[]}}}",
+        "key": "redux_healthcheck_response"
+      },
+      {
+        "type": "any",
+        "value": 200,
+        "key": "redux_healthcheck_status"
+      },
+      {
+        "type": "any",
+        "value": 686,
+        "key": "redux_healthcheck_time"
+      },
+      {
+        "type": "any",
+        "value": "{\"Status\":\"OK\",\"Timestamp\":\"2025-11-10T20:13:49.4920196Z\"}",
+        "key": "redux_ping_response"
+      },
+      {
+        "type": "any",
+        "value": 200,
+        "key": "redux_ping_status"
+      }
+    ]
+  },
+  "globals": {
+    "id": "2d579557-eb9a-4ba4-8474-edf0d79c8e8a",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 11,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 4,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 2,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 351.5,
+      "responseMin": 17,
+      "responseMax": 686,
+      "responseSd": 334.5,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1762805628619,
+      "completed": 1762805629538
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 2,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "0172624f-353e-4a8f-95e5-0cc607c1f2db",
+          "httpRequestId": "3e780c5a-6333-4e8b-a766-9b2a6f8d6cdc"
+        },
+        "item": {
+          "id": "8b5f99f2-1a07-4238-a200-e9cbc56a95e4",
+          "name": "CheckHealth",
+          "request": {
+            "description": {
+              "content": "Gets application health check results from Redux API. Returns Status, TotalDuration, and Entries fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "healthcheck",
+                "CheckHealth"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "38d28767-d50a-4e1c-893b-25590d338a98",
+                "type": "text/javascript",
+                "exec": [
+                  "// POC Test: Validate Redux API Response",
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response time is acceptable', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "",
+                  "pm.test('Response has required headers', function () {",
+                  "    pm.response.to.have.header('Content-Type');",
+                  "    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+                  "});",
+                  "",
+                  "pm.test('Response has Status field', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('Status');",
+                  "    pm.expect(jsonData.Status).to.be.oneOf(['Healthy', 'Unhealthy']);",
+                  "});",
+                  "",
+                  "pm.test('Response has TotalDuration field', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('TotalDuration');",
+                  "});",
+                  "",
+                  "pm.test('Response has Entries field', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('Entries');",
+                  "    pm.expect(jsonData.Entries).to.be.an('object');",
+                  "});",
+                  "",
+                  "// Store response for comparison",
+                  "pm.environment.set('redux_healthcheck_response', JSON.stringify(pm.response.json()));",
+                  "pm.environment.set('redux_healthcheck_status', pm.response.code);",
+                  "pm.environment.set('redux_healthcheck_time', pm.response.responseTime);",
+                  "",
+                  "console.log('Redux API Response:', JSON.stringify(pm.response.json(), null, 2));"
+                ],
+                "_lastExecutionId": "d019bcc4-2f13-496b-8456-9b042175c0ee"
+              }
+            }
+          ]
+        },
+        "request": {
+          "description": {
+            "content": "Gets application health check results from Redux API. Returns Status, TotalDuration, and Entries fields.",
+            "type": "text/plain"
+          },
+          "url": {
+            "protocol": "https",
+            "port": "5001",
+            "path": [
+              "api",
+              "healthcheck",
+              "CheckHealth"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Authorization",
+              "value": "Basic dGVzdC1jbGllbnQ6dGVzdC1hcGkta2V5LXJlZHV4",
+              "system": true
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "7bc6b8ee-db26-4c22-9094-d31acae87bfe",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:5001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET",
+          "auth": {
+            "type": "basic",
+            "basic": [
+              {
+                "type": "string",
+                "value": "test-api-key-redux",
+                "key": "password"
+              },
+              {
+                "type": "string",
+                "value": "test-client",
+                "key": "username"
+              }
+            ]
+          }
+        },
+        "response": {
+          "id": "a496a56f-8a47-48f6-be18-a0137b32d388",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Length",
+              "value": "248"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 10 Nov 2025 20:13:48 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "Kestrel"
+            },
+            {
+              "key": "Request-Context",
+              "value": "appId="
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              83,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              85,
+              110,
+              104,
+              101,
+              97,
+              108,
+              116,
+              104,
+              121,
+              34,
+              44,
+              34,
+              84,
+              111,
+              116,
+              97,
+              108,
+              68,
+              117,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              34,
+              58,
+              34,
+              48,
+              48,
+              58,
+              48,
+              48,
+              58,
+              48,
+              48,
+              46,
+              52,
+              54,
+              51,
+              50,
+              56,
+              50,
+              50,
+              34,
+              44,
+              34,
+              69,
+              110,
+              116,
+              114,
+              105,
+              101,
+              115,
+              34,
+              58,
+              123,
+              34,
+              82,
+              101,
+              112,
+              111,
+              115,
+              105,
+              116,
+              111,
+              114,
+              121,
+              68,
+              98,
+              72,
+              101,
+              97,
+              108,
+              116,
+              104,
+              67,
+              104,
+              101,
+              99,
+              107,
+              34,
+              58,
+              123,
+              34,
+              68,
+              97,
+              116,
+              97,
+              34,
+              58,
+              123,
+              125,
+              44,
+              34,
+              68,
+              101,
+              115,
+              99,
+              114,
+              105,
+              112,
+              116,
+              105,
+              111,
+              110,
+              34,
+              58,
+              34,
+              68,
+              97,
+              116,
+              97,
+              98,
+              97,
+              115,
+              101,
+              32,
+              99,
+              111,
+              110,
+              110,
+              101,
+              99,
+              116,
+              105,
+              111,
+              110,
+              32,
+              105,
+              115,
+              32,
+              117,
+              110,
+              104,
+              101,
+              97,
+              108,
+              116,
+              104,
+              121,
+              46,
+              32,
+              83,
+              113,
+              108,
+              69,
+              120,
+              99,
+              101,
+              112,
+              116,
+              105,
+              111,
+              110,
+              34,
+              44,
+              34,
+              68,
+              117,
+              114,
+              97,
+              116,
+              105,
+              111,
+              110,
+              34,
+              58,
+              34,
+              48,
+              48,
+              58,
+              48,
+              48,
+              58,
+              48,
+              48,
+              46,
+              52,
+              51,
+              48,
+              49,
+              48,
+              52,
+              54,
+              34,
+              44,
+              34,
+              69,
+              120,
+              99,
+              101,
+              112,
+              116,
+              105,
+              111,
+              110,
+              34,
+              58,
+              110,
+              117,
+              108,
+              108,
+              44,
+              34,
+              83,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              85,
+              110,
+              104,
+              101,
+              97,
+              108,
+              116,
+              104,
+              121,
+              34,
+              44,
+              34,
+              84,
+              97,
+              103,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125,
+              125,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 686,
+          "responseSize": 248
+        },
+        "id": "8b5f99f2-1a07-4238-a200-e9cbc56a95e4",
+        "assertions": [
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          },
+          {
+            "assertion": "Response time is acceptable",
+            "skipped": false
+          },
+          {
+            "assertion": "Response has required headers",
+            "skipped": false
+          },
+          {
+            "assertion": "Response has Status field",
+            "skipped": false
+          },
+          {
+            "assertion": "Response has TotalDuration field",
+            "skipped": false
+          },
+          {
+            "assertion": "Response has Entries field",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "01080671-b487-4b3a-8501-c3138e0cbbcc",
+          "length": 2,
+          "cycles": 1,
+          "position": 1,
+          "iteration": 0,
+          "httpRequestId": "076615e2-a6a5-4e71-98f6-e82b4471dfad"
+        },
+        "item": {
+          "id": "3bc3065d-67fc-4d8a-9622-7e655b2bdd59",
+          "name": "Ping (NEW)",
+          "request": {
+            "description": {
+              "content": "Simple ping endpoint (NEW in Redux). Returns OK status and UTC timestamp. This endpoint does not exist in the Original API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "healthcheck",
+                "ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{apiKey}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "36a72dd6-a8ba-422b-82ff-03ad438ea583",
+                "type": "text/javascript",
+                "exec": [
+                  "// POC Test: Validate Redux Ping Endpoint (NEW)",
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response time is acceptable', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "",
+                  "pm.test('Response has Status field', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('Status');",
+                  "    pm.expect(jsonData.Status).to.equal('OK');",
+                  "});",
+                  "",
+                  "pm.test('Response has Timestamp field', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('Timestamp');",
+                  "});",
+                  "",
+                  "pm.test('Timestamp is recent', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    const responseTime = new Date(jsonData.Timestamp);",
+                  "    const now = new Date();",
+                  "    const diffSeconds = (now - responseTime) / 1000;",
+                  "    pm.expect(diffSeconds).to.be.below(60); // Within last minute",
+                  "});",
+                  "",
+                  "// Store response",
+                  "pm.environment.set('redux_ping_response', JSON.stringify(pm.response.json()));",
+                  "pm.environment.set('redux_ping_status', pm.response.code);",
+                  "",
+                  "console.log('Redux Ping Response:', JSON.stringify(pm.response.json(), null, 2));"
+                ],
+                "_lastExecutionId": "35040b3d-b0e5-4f20-9e27-8bbc4d1e1b7f"
+              }
+            }
+          ]
+        },
+        "request": {
+          "description": {
+            "content": "Simple ping endpoint (NEW in Redux). Returns OK status and UTC timestamp. This endpoint does not exist in the Original API.",
+            "type": "text/plain"
+          },
+          "url": {
+            "protocol": "https",
+            "port": "5001",
+            "path": [
+              "api",
+              "healthcheck",
+              "ping"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Authorization",
+              "value": "Basic dGVzdC1jbGllbnQ6dGVzdC1hcGkta2V5LXJlZHV4",
+              "system": true
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "8ea88cd8-5476-46f3-9be5-dca212f83f4d",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:5001",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET",
+          "auth": {
+            "type": "basic",
+            "basic": [
+              {
+                "type": "string",
+                "value": "test-api-key-redux",
+                "key": "password"
+              },
+              {
+                "type": "string",
+                "value": "test-client",
+                "key": "username"
+              }
+            ]
+          }
+        },
+        "response": {
+          "id": "3fd0a336-90ae-4fb5-a3b7-41bac88365e9",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Length",
+              "value": "58"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 10 Nov 2025 20:13:48 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "Kestrel"
+            },
+            {
+              "key": "Request-Context",
+              "value": "appId=cid-v1:dd1790f3-cbe0-433e-aac1-af42a743b6bc"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              83,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              79,
+              75,
+              34,
+              44,
+              34,
+              84,
+              105,
+              109,
+              101,
+              115,
+              116,
+              97,
+              109,
+              112,
+              34,
+              58,
+              34,
+              50,
+              48,
+              50,
+              53,
+              45,
+              49,
+              49,
+              45,
+              49,
+              48,
+              84,
+              50,
+              48,
+              58,
+              49,
+              51,
+              58,
+              52,
+              57,
+              46,
+              52,
+              57,
+              50,
+              48,
+              49,
+              57,
+              54,
+              90,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 17,
+          "responseSize": 58
+        },
+        "id": "3bc3065d-67fc-4d8a-9622-7e655b2bdd59",
+        "assertions": [
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          },
+          {
+            "assertion": "Response time is acceptable",
+            "skipped": false
+          },
+          {
+            "assertion": "Response has Status field",
+            "skipped": false
+          },
+          {
+            "assertion": "Response has Timestamp field",
+            "skipped": false
+          },
+          {
+            "assertion": "Timestamp is recent",
+            "skipped": false
+          }
+        ]
+      }
+    ],
+    "transfers": {
+      "responseTotal": 306
+    },
+    "failures": [],
+    "error": null
+  }
+}

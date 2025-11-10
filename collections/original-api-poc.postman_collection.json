@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "original-api-poc-001",
+		"name": "BargeOps Original API - POC (HealthCheck)",
+		"description": "Proof of Concept collection for Original API HealthCheck endpoint testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "HealthCheck",
+			"item": [
+				{
+					"name": "CheckHealth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// POC Test: Validate Original API Response",
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Response time is acceptable', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"pm.test('Response has required headers', function () {",
+									"    pm.response.to.have.header('Content-Type');",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+									"});",
+									"",
+									"pm.test('Response has ApplicationStatus field', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('ApplicationStatus');",
+									"    pm.expect(jsonData.ApplicationStatus).to.be.oneOf(['Healthy', 'Unhealthy']);",
+									"});",
+									"",
+									"pm.test('Response has DatabaseConnectionStatus field', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('DatabaseConnectionStatus');",
+									"    pm.expect(jsonData.DatabaseConnectionStatus).to.be.oneOf(['Connected', 'Disconnected']);",
+									"});",
+									"",
+									"// Store response for comparison",
+									"pm.environment.set('original_healthcheck_response', JSON.stringify(pm.response.json()));",
+									"pm.environment.set('original_healthcheck_status', pm.response.code);",
+									"pm.environment.set('original_healthcheck_time', pm.response.responseTime);",
+									"",
+									"console.log('Original API Response:', JSON.stringify(pm.response.json(), null, 2));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{apiKey}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/HealthCheck/CheckHealth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"HealthCheck",
+								"CheckHealth"
+							]
+						},
+						"description": "Gets application health check results from Original API. Returns ApplicationStatus and DatabaseConnectionStatus fields."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{apiKey}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{clientId}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Pre-request script for Original API",
+					"console.log('===== ORIGINAL API REQUEST =====');",
+					"console.log('Making request to: ' + pm.request.url);",
+					"console.log('Timestamp: ' + new Date().toISOString());"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Collection-level test script",
+					"console.log('Response Status:', pm.response.code);",
+					"console.log('Response Time:', pm.response.responseTime + 'ms');"
+				]
+			}
+		}
+	]
+}
