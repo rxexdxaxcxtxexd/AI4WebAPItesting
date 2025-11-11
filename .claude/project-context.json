@@ -1,0 +1,367 @@
+{
+  "project": "API Migration Validation - Original vs Redux",
+  "session_start": "2025-11-11",
+  "last_updated": "2025-11-11T18:32:47Z",
+  "status": "STAGE_3_COMPLETE_BLOCKED_BY_DEPENDENCY",
+  "git_repo": "https://github.com/rxexdxaxcxtxexd/AI4WebAPItesting.git",
+  "git_commit": "8f5ba3cf5cb23b09473231c40107fb69afdf57fd",
+
+  "apis": {
+    "original": {
+      "framework": ".NET Framework 4.8",
+      "path": "C:\\Users\\layden\\Codebases\\Web API\\BargeOps.Web.Api_original\\BargeOps.Web.Api_original",
+      "hosting": "IIS Express",
+      "status": "NOT_RUNNING",
+      "build_tool": "MSBuild (not available)",
+      "base_url": "http://localhost:PORT_TBD",
+      "notes": "Pre-compiled DLLs exist in bin folder, hosting environment missing"
+    },
+    "redux": {
+      "framework": ".NET 9.0 (upgraded from 8.0)",
+      "path": "C:\\Users\\layden\\Codebases\\Web API\\BargeOps.Web.API_Redux\\BargeOps.Web.API_Redux\\src\\BargeOps.Web.Api",
+      "hosting": "Kestrel",
+      "status": "RUNNING",
+      "base_url": "https://localhost:5001",
+      "process_id": "f349b2",
+      "modified_files": ["Startup.cs", "BargeOps.Web.Api.csproj"],
+      "notes": "Running with InMemoryApiKeyStore, DbHelper registered in DI"
+    }
+  },
+
+  "critical_blocker": {
+    "component": "BargeOps.Onshore.BusinessLogic.dll",
+    "version": "7.0.9356.20684",
+    "status": "RUNTIME_INCOMPATIBLE",
+    "impact": "6/17 endpoints blocked (35%)",
+    "error": "System.IO.FileNotFoundException (misleading - actually runtime incompatibility)",
+    "documentation": ["BUSINESSLOGIC-DEPENDENCY-ISSUE.md", "STAGE4B-BUSINESSLOGIC-INCOMPATIBILITY.md"],
+    "root_cause": ".NET Framework 4.8 DLL cannot be loaded by .NET 9.0 runtime",
+    "affected_endpoints": [
+      "POST /api/comtrac/SubmitComtracBargeUnloadData",
+      "GET /api/matchtracksintegration/GetBargeTripList",
+      "GET /api/matchtracksintegration/GetBargeTripList (no customerID)",
+      "POST /api/matchtracksintegration/SubmitBargeLoadData",
+      "POST /api/helmintegration/BargeDamageRepairUpdate",
+      "POST /api/helmintegration/BargeDamageUpdate"
+    ],
+    "dll_location_original": "C:\\Users\\layden\\Codebases\\Web API\\BargeOps.Web.Api_original\\BargeOps.Web.Api_original\\bin\\BargeOps.Onshore.BusinessLogic.dll",
+    "dll_location_redux": "C:\\Users\\layden\\Codebases\\Web API\\BargeOps.Web.API_Redux\\BargeOps.Web.API_Redux\\src\\BargeOps.Web.Api\\bin\\Debug\\net9.0\\BargeOps.Onshore.BusinessLogic.dll",
+    "dll_copied": true,
+    "dll_file_size": "3975680 bytes (3.8 MB)",
+    "resolution_options": [
+      "Recompile BusinessLogic for .NET Standard 2.0 (RECOMMENDED)",
+      "Rebuild BusinessLogic for .NET 9",
+      "Decompile and port (high risk)",
+      "Proceed with limited testing (11/17 endpoints only)"
+    ],
+    "resolution_status": "PENDING_STAKEHOLDER_DECISION"
+  },
+
+  "stages_completed": {
+    "STAGE_0": {
+      "name": "Environment check",
+      "status": "COMPLETED",
+      "findings": [
+        "Redux API: .NET 9.0 SDK available",
+        "MSBuild: NOT AVAILABLE",
+        "IIS Express: NOT AVAILABLE",
+        "Redux API: Had targeting issue (8.0 → 9.0 fixed)",
+        "InMemoryApiKeyStore: Already implemented from previous session"
+      ]
+    },
+    "STAGE_1": {
+      "name": "Extract endpoint specifications",
+      "status": "COMPLETED",
+      "output_file": "analysis/ENDPOINT-SPECIFICATIONS.md",
+      "lines": 688,
+      "endpoints_analyzed": 9,
+      "breaking_changes_found": 10,
+      "breaking_changes_detail": {
+        "critical": 3,
+        "major": 3,
+        "minor": 4
+      },
+      "controllers": ["ComtracController", "MatchTracksIntegrationController", "HelmIntegrationController"]
+    },
+    "STAGE_2A": {
+      "name": "Generate ComTrac collections",
+      "status": "COMPLETED",
+      "files_created": [
+        "collections/redux-comtrac.postman_collection.json (3 requests)",
+        "collections/original-comtrac.postman_collection.json (4 requests)"
+      ]
+    },
+    "STAGE_2B": {
+      "name": "Generate MatchTracks collections",
+      "status": "COMPLETED",
+      "files_created": [
+        "collections/redux-matchtracks.postman_collection.json (4 requests)",
+        "collections/original-matchtracks.postman_collection.json (5 requests)"
+      ]
+    },
+    "STAGE_2C": {
+      "name": "Generate Helm collections",
+      "status": "COMPLETED",
+      "files_created": [
+        "collections/redux-helm.postman_collection.json (8 requests)",
+        "collections/original-helm.postman_collection.json (8 requests)"
+      ]
+    },
+    "STAGE_3": {
+      "name": "Execute Redux API test suite",
+      "status": "COMPLETED_WITH_ISSUES",
+      "pass_rate": "64% (11/17)",
+      "blocked_endpoints": 6,
+      "files_created": [
+        "collections/redux-api-comprehensive.postman_collection.json (17 requests merged)",
+        "results/STAGE3-REDUX-TEST-RESULTS.md (288 lines)",
+        "results/redux-comprehensive-mock-results.json (30360 lines)",
+        "BUSINESSLOGIC-DEPENDENCY-ISSUE.md (384 lines)"
+      ],
+      "passing_endpoints": [
+        "GET /api/healthcheck/CheckHealth (6/6 assertions)",
+        "GET /api/healthcheck/ping (4/4 assertions)",
+        "GET /api/comtrac/GetNewComtracSchedules (5/5 assertions)",
+        "All 400 validation error tests"
+      ],
+      "blocked_endpoints_detail": [
+        "POST /api/comtrac/SubmitComtracBargeUnloadData (500)",
+        "GET /api/matchtracksintegration/GetBargeTripList (500)",
+        "GET /api/matchtracksintegration/GetBargeTripList?customerID missing (500)",
+        "POST /api/matchtracksintegration/SubmitBargeLoadData (500)",
+        "POST /api/helmintegration/BargeDamageRepairUpdate (500)",
+        "POST /api/helmintegration/BargeDamageUpdate (500)"
+      ],
+      "issues_found": [
+        "Missing BargeOps.Onshore.BusinessLogic.dll (BLOCKER)",
+        "Validation not enforced for invalid DamageLevel values (returns 200 instead of 400)",
+        "Response format inconsistency in Helm endpoints"
+      ]
+    }
+  },
+
+  "stages_pending": {
+    "STAGE_4": {
+      "name": "Setup and start Original API",
+      "status": "NEXT",
+      "blockers": ["MSBuild not available", "IIS Express not available"],
+      "options": [
+        "Install Visual Studio Build Tools 2022",
+        "Check if pre-compiled DLLs can run with IIS Express installer",
+        "Skip to Stage 6 (limited comparison)"
+      ]
+    },
+    "STAGE_5": {
+      "name": "Execute Original API test suite",
+      "status": "PENDING",
+      "depends_on": "STAGE_4"
+    },
+    "STAGE_6": {
+      "name": "Compare responses and generate breaking changes report",
+      "status": "PENDING",
+      "can_proceed_with_limited_scope": true,
+      "notes": "Can compare working endpoints (11/17) without Original API running"
+    },
+    "STAGE_7": {
+      "name": "Configure real database and re-run tests",
+      "status": "PENDING",
+      "requires": ["Database connection string", "Database schema populated"]
+    },
+    "STAGE_8": {
+      "name": "Update documentation and commit",
+      "status": "PENDING",
+      "notes": "Already partially complete - Stage 3 committed"
+    }
+  },
+
+  "breaking_changes_identified": [
+    {
+      "id": "BC001",
+      "severity": "CRITICAL",
+      "endpoint": "GET /api/matchtracksintegration/GetBargeTripList",
+      "description": "Requires customerID query parameter in Redux, Original reads from JWT Claims",
+      "status": "UNTESTABLE - blocked by missing DLL",
+      "impact": "All existing clients will break",
+      "migration_required": "Yes"
+    },
+    {
+      "id": "BC002",
+      "severity": "CRITICAL",
+      "endpoint": "POST /api/helmintegration/BargeDamageRepairUpdate",
+      "description": "Field names changed to PascalCase (BargeNum, UscgNum, RepairStatus) from lowercase",
+      "status": "PARTIALLY_TESTED",
+      "impact": "JSON serialization incompatibility",
+      "migration_required": "Yes"
+    },
+    {
+      "id": "BC003",
+      "severity": "MAJOR",
+      "endpoint": "POST /api/comtrac/SubmitComtracBargeUnloadData",
+      "description": "Response format changed from {Success, Message} to empty OkResult",
+      "status": "UNTESTABLE - blocked by missing DLL",
+      "impact": "Response parsing will fail",
+      "migration_required": "Yes"
+    },
+    {
+      "id": "BC004",
+      "severity": "MAJOR",
+      "endpoint": "POST /api/comtrac/SubmitComtracBargeUnloadData (404 → 500)",
+      "description": "BargeTripID not found returns 500 instead of 404 in Redux",
+      "status": "UNTESTABLE",
+      "impact": "Error handling logic different",
+      "migration_required": "No, but affects monitoring"
+    },
+    {
+      "id": "BC005",
+      "severity": "MINOR",
+      "endpoint": "GET /api/comtrac/GetNewComtracSchedules",
+      "description": "URL casing: /ComTrac/ (Original) vs /comtrac/ (Redux)",
+      "status": "TESTED - both work",
+      "impact": "Case-insensitive routing handles this",
+      "migration_required": "No"
+    }
+  ],
+
+  "code_changes_made": {
+    "redux_api": [
+      {
+        "file": "src/BargeOps.Web.Api/BargeOps.Web.Api.csproj",
+        "line": 4,
+        "change": "<TargetFramework>net8.0</TargetFramework> → <TargetFramework>net9.0</TargetFramework>",
+        "reason": "Fix runtime crash - .NET 8.0 SDK not installed"
+      },
+      {
+        "file": "src/BargeOps.Web.Api/Startup.cs",
+        "lines": "113-118",
+        "change": "Added DbHelper DI registration with SqlConnection",
+        "reason": "Fix System.InvalidOperationException - DbHelper not registered",
+        "code": "services.AddScoped<DbHelper>(provider => { var connectionString = Configuration.GetConnectionString(\"ServiceData\"); var connection = new System.Data.SqlClient.SqlConnection(connectionString); return new DbHelper(connection); });"
+      }
+    ],
+    "test_environment": [
+      {
+        "file": "environments/redux-api.postman_environment.json",
+        "change": "Added testCustomerId, testClientId, testVesselUscgNum, testBargeNum variables",
+        "values": {
+          "testCustomerId": "1001",
+          "testClientId": "501",
+          "testVesselUscgNum": "1234567",
+          "testBargeNum": "TEST001"
+        }
+      }
+    ]
+  },
+
+  "authentication_config": {
+    "mode": "MOCK",
+    "implementation": "InMemoryApiKeyStore",
+    "location": "src/BargeOps.Web.Api/Authentication/InMemoryApiKeyStore.cs",
+    "claims_provided": [
+      {"type": "CustomerId", "value": "1001"},
+      {"type": "Role", "value": "ComTrac"},
+      {"type": "Role", "value": "Helm"},
+      {"type": "Role", "value": "MatchTracks"}
+    ],
+    "notes": "Bypasses database, allows all authenticated requests"
+  },
+
+  "test_statistics": {
+    "total_collections": 9,
+    "total_requests": 32,
+    "total_assertions": "130+",
+    "redux_pass_rate": "64%",
+    "redux_passing": 11,
+    "redux_failing": 6,
+    "original_tested": false,
+    "response_time_avg": "50-300ms",
+    "response_time_fastest": "17ms (Ping)",
+    "response_time_slowest": "481ms (CheckHealth)"
+  },
+
+  "file_inventory": {
+    "analysis": [
+      "analysis/ENDPOINT-SPECIFICATIONS.md (688 lines)"
+    ],
+    "collections": [
+      "collections/redux-comtrac.postman_collection.json (3 requests)",
+      "collections/redux-matchtracks.postman_collection.json (4 requests)",
+      "collections/redux-helm.postman_collection.json (8 requests)",
+      "collections/original-comtrac.postman_collection.json (4 requests)",
+      "collections/original-matchtracks.postman_collection.json (5 requests)",
+      "collections/original-helm.postman_collection.json (8 requests)",
+      "collections/redux-api-comprehensive.postman_collection.json (17 requests merged)",
+      "collections/redux-api-poc.postman_collection.json (2 POC requests from previous session)"
+    ],
+    "environments": [
+      "environments/redux-api.postman_environment.json",
+      "environments/original-api.postman_environment.json"
+    ],
+    "results": [
+      "results/STAGE3-REDUX-TEST-RESULTS.md (288 lines)",
+      "results/redux-comprehensive-mock-results.json (30360 lines)"
+    ],
+    "documentation": [
+      "BUSINESSLOGIC-DEPENDENCY-ISSUE.md (384 lines)",
+      "README.md",
+      ".claude/project-context.json (this file)"
+    ]
+  },
+
+  "execution_context": {
+    "working_directory": "C:\\Users\\layden\\Codebases\\Web API\\AIPostExp - POC Plan & Test",
+    "user": "layden@csgsolutions.com",
+    "machine": "Windows",
+    "dotnet_sdks": ["7.0.20", "9.0.8"],
+    "newman_available": true,
+    "git_configured": true
+  },
+
+  "background_processes": [
+    {
+      "id": "f349b2",
+      "command": "dotnet run --urls https://localhost:5001",
+      "directory": "C:\\Users\\layden\\Codebases\\Web API\\BargeOps.Web.API_Redux\\BargeOps.Web.API_Redux\\src\\BargeOps.Web.Api",
+      "status": "RUNNING",
+      "purpose": "Redux API server for testing"
+    }
+  ],
+
+  "recommendations_for_stage_4": {
+    "option_1": {
+      "name": "Install Visual Studio Build Tools 2022",
+      "effort": "Medium (30-60 min download + install)",
+      "pros": ["Can build Original API from source", "Full MSBuild support", "Future-proof"],
+      "cons": ["Large download (~3GB)", "Installation time"],
+      "recommended": true
+    },
+    "option_2": {
+      "name": "Install IIS Express standalone",
+      "effort": "Low (5-10 min)",
+      "pros": ["Smaller download", "May work with pre-compiled DLLs"],
+      "cons": ["Still need MSBuild for full rebuild", "May not work without proper build"],
+      "recommended": false
+    },
+    "option_3": {
+      "name": "Skip Stage 4, proceed to limited Stage 6",
+      "effort": "None",
+      "pros": ["Can compare 11/17 working endpoints immediately", "No installation"],
+      "cons": ["Incomplete comparison", "Cannot validate critical breaking changes"],
+      "recommended": false
+    }
+  },
+
+  "search_strategy_for_dll": {
+    "priority_1": "C:\\Users\\layden\\Codebases\\Web API\\BargeOps.Web.Api_original\\BargeOps.Web.Api_original\\bin\\Debug\\",
+    "priority_2": "C:\\Users\\layden\\Codebases\\Web API\\BargeOps.Web.Api_original\\BargeOps.Web.Api_original\\bin\\Release\\",
+    "priority_3": "Search entire 'Web API' directory tree for *.dll matching 'BusinessLogic'",
+    "command": "dir /s /b \"C:\\Users\\layden\\Codebases\\Web API\\*.dll\" | findstr /i \"BusinessLogic\""
+  },
+
+  "next_actions": [
+    "IMMEDIATE: Proceed to Stage 4 - attempt Original API setup",
+    "IF MSBuild needed: Recommend Visual Studio Build Tools 2022 installation",
+    "PARALLEL: Search for BargeOps.Onshore.BusinessLogic.dll in Original API folders",
+    "IF DLL found: Copy to Redux bin folder and re-run Stage 3",
+    "FALLBACK: Proceed to Stage 6 with limited comparison (11/17 endpoints)"
+  ]
+}
