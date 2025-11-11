@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "comtrac-redux-001",
+		"name": "BargeOps Redux API - ComTrac",
+		"description": "ComTrac integration endpoints for the Redux API (.NET 9.0). Includes schedule retrieval and unload data submission.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{clientId}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{apiKey}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "ComTrac",
+			"item": [
+				{
+					"name": "GetNewComtracSchedules",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Content-Type Test",
+									"pm.test('Content-Type is application/json', function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+									"});",
+									"",
+									"// Response Body Tests",
+									"pm.test('Response is valid JSON array', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"",
+									"// Schema Validation",
+									"pm.test('Response array items have expected structure', function () {",
+									"    const jsonData = pm.response.json();",
+									"    if (jsonData.length > 0) {",
+									"        const firstItem = jsonData[0];",
+									"        pm.expect(firstItem).to.have.property('BargeTripID');",
+									"        pm.expect(firstItem).to.have.property('BargeNum');",
+									"        pm.expect(firstItem).to.have.property('LoadLocation');",
+									"        pm.expect(firstItem).to.have.property('Commodity');",
+									"    }",
+									"});",
+									"",
+									"// Store Response for Comparison",
+									"pm.environment.set('lastResponse_GetNewComtracSchedules_Redux', JSON.stringify(pm.response.json()));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/comtrac/GetNewComtracSchedules?clientId={{testClientId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "comtrac", "GetNewComtracSchedules"],
+							"query": [
+								{
+									"key": "clientId",
+									"value": "{{testClientId}}",
+									"description": "Client ID for ComTrac schedules"
+								}
+							]
+						},
+						"description": "Retrieves ComTrac schedule information for barge trips. Returns an array of schedule objects."
+					},
+					"response": []
+				},
+				{
+					"name": "SubmitComtracBargeUnloadData",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Response Body Test (Redux returns empty OkResult)",
+									"pm.test('Response is successful (may be empty)', function () {",
+									"    // Redux returns empty OkResult (no body)",
+									"    // Accept either empty or success response",
+									"    if (pm.response.text()) {",
+									"        pm.response.to.be.json;",
+									"    }",
+									"});",
+									"",
+									"// Store Response for Comparison",
+									"pm.environment.set('lastResponse_SubmitComtracBargeUnloadData_Redux', pm.response.text() || 'Empty OkResult');"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"BargeTripID\": 12345,\n  \"UnloadDateTime\": \"2025-11-10T14:30:00Z\",\n  \"UnloadTons\": 1500.75\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/comtrac/SubmitComtracBargeUnloadData",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "comtrac", "SubmitComtracBargeUnloadData"]
+						},
+						"description": "Submits unload data for a barge trip to the ComTrac system. **Breaking Change**: Redux returns empty OkResult instead of {Success, Message}."
+					},
+					"response": []
+				},
+				{
+					"name": "SubmitComtracBargeUnloadData - Invalid Data (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 400 Bad Request', function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Validation Error Response",
+									"pm.test('Response contains validation errors', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    // Redux returns ValidationProblem format",
+									"    pm.expect(jsonData).to.have.property('errors').or.to.have.property('title');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"BargeTripID\": -1,\n  \"UnloadDateTime\": \"invalid-date\",\n  \"UnloadTons\": -100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/comtrac/SubmitComtracBargeUnloadData",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "comtrac", "SubmitComtracBargeUnloadData"]
+						},
+						"description": "Tests validation error handling with invalid data (negative values, invalid date format)."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

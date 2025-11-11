@@ -1,0 +1,494 @@
+{
+	"info": {
+		"_postman_id": "helm-original-001",
+		"name": "BargeOps Original API - Helm Integration",
+		"description": "Helm integration endpoints for the Original API (.NET Framework 4.8). Includes barge damage updates, form completion, and inventory readings.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{clientId}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{apiKey}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "Helm Integration",
+			"item": [
+				{
+					"name": "BargeDamageRepairUpdate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Response Body Test",
+									"pm.test('Response has Success field', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Success');",
+									"    pm.expect(jsonData.Success).to.be.true;",
+									"});",
+									"",
+									"// Store Response",
+									"pm.environment.set('lastResponse_BargeDamageRepairUpdate_Original', JSON.stringify(pm.response.json()));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bargenum\": \"TEST001\",\n  \"uscgnum\": \"1234567\",\n  \"repairstatus\": \"In Progress\",\n  \"IsCargoDamaged\": true,\n  \"IsDryDocked\": false,\n  \"IsLeaker\": false,\n  \"IsRepairScheduled\": true,\n  \"DamageLevel\": \"*\",\n  \"IsDamaged\": true,\n  \"DamageNote\": \"Minor hull damage\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/HelmIntegration/BargeDamageRepairUpdate",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "HelmIntegration", "BargeDamageRepairUpdate"]
+						},
+						"description": "Updates barge damage repair information. **NOTE**: Original API uses lowercase field names (bargenum, uscgnum, repairstatus) and validates via config-based parameter list."
+					},
+					"response": []
+				},
+				{
+					"name": "BargeDamageRepairUpdate - Missing Parameter (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 400 Bad Request', function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Error Response",
+									"pm.test('Response contains parameter error', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Success');",
+									"    pm.expect(jsonData.Success).to.be.false;",
+									"    pm.expect(jsonData.Message).to.include('parameter');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bargenum\": \"TEST001\",\n  \"IsDamaged\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/HelmIntegration/BargeDamageRepairUpdate",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "HelmIntegration", "BargeDamageRepairUpdate"]
+						},
+						"description": "Tests config-based validation - missing required parameters from BargeDamageRepairUpdateParameterList config."
+					},
+					"response": []
+				},
+				{
+					"name": "BargeDamageUpdate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Response Body Test",
+									"pm.test('Response has Success and Message fields', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Success');",
+									"    pm.expect(jsonData).to.have.property('Message');",
+									"    pm.expect(jsonData.Success).to.be.true;",
+									"});",
+									"",
+									"// Store Response",
+									"pm.environment.set('lastResponse_BargeDamageUpdate_Original', JSON.stringify(pm.response.json()));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"BargeNum\": \"TEST001\",\n  \"BargeUscgNum\": \"1234567\",\n  \"DamageLevel\": \"**\",\n  \"DamageNote\": \"Moderate hull damage\",\n  \"IsCargoDamaged\": false,\n  \"IsLeaker\": false,\n  \"IsDryDocked\": false,\n  \"IsRepairScheduled\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/HelmIntegration/BargeDamageUpdate",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "HelmIntegration", "BargeDamageUpdate"]
+						},
+						"description": "Updates barge damage level status. Returns {Success: true, Message: 'Update successful.'}."
+					},
+					"response": []
+				},
+				{
+					"name": "BargeDamageUpdate - Not Found (404)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 404 Not Found', function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Error Response",
+									"pm.test('Response contains error information', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Success');",
+									"    pm.expect(jsonData.Success).to.be.false;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"BargeNum\": \"NOTFOUND999\",\n  \"BargeUscgNum\": \"9999999\",\n  \"DamageLevel\": \"*\",\n  \"DamageNote\": \"Test\",\n  \"IsCargoDamaged\": false,\n  \"IsLeaker\": false,\n  \"IsDryDocked\": false,\n  \"IsRepairScheduled\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/HelmIntegration/BargeDamageUpdate",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "HelmIntegration", "BargeDamageUpdate"]
+						},
+						"description": "Tests 404 error when barge not found (SqlException 51000). **⚠️ Breaking Change**: Redux returns 500 instead of 404."
+					},
+					"response": []
+				},
+				{
+					"name": "FormComplete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Response Body Test",
+									"pm.test('Response has Success and Message fields', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Success');",
+									"    pm.expect(jsonData).to.have.property('Message');",
+									"    pm.expect(jsonData.Success).to.be.true;",
+									"});",
+									"",
+									"// Store Response",
+									"pm.environment.set('lastResponse_FormComplete_Original', JSON.stringify(pm.response.json()));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"FormType\": \"Drill\",\n  \"VesselUscgNum\": \"1234567\",\n  \"StartDateTime\": \"2025-11-10T08:00:00Z\",\n  \"CompletedDateTime\": \"2025-11-10T09:00:00Z\",\n  \"PersonnelNames\": \"John Doe,Jane Smith,Bob Johnson\",\n  \"InstructorName\": \"Captain Smith\",\n  \"FormNumber\": \"FORM-001\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/HelmIntegration/FormComplete",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "HelmIntegration", "FormComplete"]
+						},
+						"description": "Inserts form completion information. Returns {Success: true, Message: 'Update successful.'}."
+					},
+					"response": []
+				},
+				{
+					"name": "FormComplete - Not Found (404)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 404 Not Found', function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Error Response",
+									"pm.test('Response contains error information', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Success');",
+									"    pm.expect(jsonData.Success).to.be.false;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"FormType\": \"Drill\",\n  \"VesselUscgNum\": \"9999999\",\n  \"StartDateTime\": \"2025-11-10T08:00:00Z\",\n  \"CompletedDateTime\": \"2025-11-10T09:00:00Z\",\n  \"PersonnelNames\": \"John Doe\",\n  \"InstructorName\": \"Captain Smith\",\n  \"FormNumber\": \"FORM-001\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/HelmIntegration/FormComplete",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "HelmIntegration", "FormComplete"]
+						},
+						"description": "Tests 404 error when vessel not found (NotFoundException). **⚠️ Breaking Change**: Redux returns 500 instead of 404."
+					},
+					"response": []
+				},
+				{
+					"name": "InventoryReadingAdd",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Response Body Test",
+									"pm.test('Response has Success and Message fields', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Success');",
+									"    pm.expect(jsonData).to.have.property('Message');",
+									"    pm.expect(jsonData.Success).to.be.true;",
+									"});",
+									"",
+									"// Store Response",
+									"pm.environment.set('lastResponse_InventoryReadingAdd_Original', JSON.stringify(pm.response.json()));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ReadingType\": \"Fuel\",\n  \"VesselUscgNum\": \"1234567\",\n  \"ReadingDateTime\": \"2025-11-10T14:30:00Z\",\n  \"ReadingUnit\": \"liters\",\n  \"HelmReadingId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"ReadingValue\": 1234.56\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/HelmIntegration/InventoryReadingAdd",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "HelmIntegration", "InventoryReadingAdd"]
+						},
+						"description": "Inserts inventory reading information. Returns {Success: true, Message: 'Update successful.'}."
+					},
+					"response": []
+				},
+				{
+					"name": "InventoryReadingAdd - Not Found (404)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 404 Not Found', function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Error Response",
+									"pm.test('Response contains error information', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Success');",
+									"    pm.expect(jsonData.Success).to.be.false;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ReadingType\": \"Fuel\",\n  \"VesselUscgNum\": \"9999999\",\n  \"ReadingDateTime\": \"2025-11-10T14:30:00Z\",\n  \"ReadingUnit\": \"liters\",\n  \"HelmReadingId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"ReadingValue\": 1234.56\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/HelmIntegration/InventoryReadingAdd",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "HelmIntegration", "InventoryReadingAdd"]
+						},
+						"description": "Tests 404 error when vessel not found (NotFoundException). **⚠️ Breaking Change**: Redux returns 500 instead of 404."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

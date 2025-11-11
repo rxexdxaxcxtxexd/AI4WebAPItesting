@@ -1,0 +1,275 @@
+{
+	"info": {
+		"_postman_id": "matchtracks-redux-001",
+		"name": "BargeOps Redux API - MatchTracks",
+		"description": "MatchTracks integration endpoints for the Redux API (.NET 9.0). Includes barge trip list retrieval and load data submission.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{clientId}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{apiKey}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "MatchTracks Integration",
+			"item": [
+				{
+					"name": "GetBargeTripList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Content-Type Test",
+									"pm.test('Content-Type is application/json', function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+									"});",
+									"",
+									"// Response Body Tests",
+									"pm.test('Response is valid JSON array', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"",
+									"// Schema Validation (35+ fields per item)",
+									"pm.test('Response array items have expected structure', function () {",
+									"    const jsonData = pm.response.json();",
+									"    if (jsonData.length > 0) {",
+									"        const firstItem = jsonData[0];",
+									"        pm.expect(firstItem).to.have.property('BargeNum');",
+									"        pm.expect(firstItem).to.have.property('TicketID');",
+									"        pm.expect(firstItem).to.have.property('Commodity');",
+									"        pm.expect(firstItem).to.have.property('LoadLocation');",
+									"        pm.expect(firstItem).to.have.property('CurrentLocation');",
+									"        pm.expect(firstItem).to.have.property('LoadQuantity');",
+									"    }",
+									"});",
+									"",
+									"// Store Response for Comparison",
+									"pm.environment.set('lastResponse_GetBargeTripList_Redux', JSON.stringify(pm.response.json()));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/matchtracksintegration/GetBargeTripList?customerID={{testCustomerId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "matchtracksintegration", "GetBargeTripList"],
+							"query": [
+								{
+									"key": "customerID",
+									"value": "{{testCustomerId}}",
+									"description": "🚨 BREAKING CHANGE: Redux requires customerID parameter (Original reads from Claims)"
+								}
+							]
+						},
+						"description": "Gets a list of barge trips for a specific customer. **🚨 CRITICAL BREAKING CHANGE**: Redux requires customerID query parameter, Original API reads from JWT Claims."
+					},
+					"response": []
+				},
+				{
+					"name": "GetBargeTripList - Missing CustomerID (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 400 Bad Request', function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/matchtracksintegration/GetBargeTripList",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "matchtracksintegration", "GetBargeTripList"]
+						},
+						"description": "Tests error when customerID parameter is missing (should return 400)."
+					},
+					"response": []
+				},
+				{
+					"name": "SubmitBargeLoadData",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 200', function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Content-Type Test",
+									"pm.test('Content-Type is application/json', function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+									"});",
+									"",
+									"// Response Body Tests",
+									"pm.test('Response has Success and Message fields', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Success');",
+									"    pm.expect(jsonData).to.have.property('Message');",
+									"});",
+									"",
+									"// Success Validation",
+									"pm.test('Success is true', function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData.Success).to.be.true;",
+									"});",
+									"",
+									"// Store Response for Comparison",
+									"pm.environment.set('lastResponse_SubmitBargeLoadData_Redux', JSON.stringify(pm.response.json()));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"TicketID\": 54321,\n  \"StartLoadingDateTime\": \"2025-11-10T08:00:00Z\",\n  \"CompleteLoadingDateTime\": \"2025-11-10T10:00:00Z\",\n  \"ReleaseDateTime\": \"2025-11-10T11:00:00Z\",\n  \"LoadQuantity\": 1500.75\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/matchtracksintegration/SubmitBargeLoadData",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "matchtracksintegration", "SubmitBargeLoadData"]
+						},
+						"description": "Submits barge load data to MatchTracks. Returns {Success: true, Message: \"Barge load data submitted successfully.\"}."
+					},
+					"response": []
+				},
+				{
+					"name": "SubmitBargeLoadData - Invalid Data (400)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Status Code Test",
+									"pm.test('Status code is 400 Bad Request', function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"// Response Time Test",
+									"pm.test('Response time is acceptable (<5000ms)', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+									"});",
+									"",
+									"// Error Response",
+									"pm.test('Response contains error information', function () {",
+									"    pm.response.to.be.json;",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('Success');",
+									"    pm.expect(jsonData.Success).to.be.false;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"TicketID\": -1,\n  \"StartLoadingDateTime\": \"invalid-date\",\n  \"CompleteLoadingDateTime\": \"invalid-date\",\n  \"ReleaseDateTime\": \"invalid-date\",\n  \"LoadQuantity\": -100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/matchtracksintegration/SubmitBargeLoadData",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "matchtracksintegration", "SubmitBargeLoadData"]
+						},
+						"description": "Tests validation error handling with invalid data (negative values, invalid dates)."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
