@@ -1,0 +1,1306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <Import Project="$(CI_BUILDTOOLS)\Targets\VBAddBuildAttributes.targets" Condition=" '$(CI_BUILDTOOLS)' != '' " />
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{096E4F27-0441-4B6B-B653-7ABA41B6B3D5}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>BargeOps.Onshore.BusinessLogic</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>On</OptionStrict>
+    <RootNamespace>BargeOps.Onshore.BusinessLogic</RootNamespace>
+    <StartupObject>BusinessLogic.%28None%29</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>Windows</MyType>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>BargeOps.Onshore.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>40000,42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>BargeOps.Onshore.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugSaas|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>BargeOps.Onshore.xml</DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>SAAS</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseSaas|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>SAAS</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugCtcBti|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\DebugCtcBti\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>BargeOps.Onshore.xml</DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>CTC_BargeTripImporter</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseCtcBti|AnyCPU'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\ReleaseCtcBti\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>BargeOps.Onshore.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>CTC_BargeTripImporter</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csg.AppFramework, Version=1.6.9358.20094, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\csgsolutions.com\share\Public\Assemblies\BargeOps\4.8\Csg.AppFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Csg.AppFramework.Core.BindableBase, Version=1.6.9358.20094, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\csgsolutions.com\share\Public\Assemblies\BargeOps\4.8\Csg.AppFramework.Core.BindableBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Csg.AppFramework.Server.DataPortal, Version=1.6.9358.20094, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\csgsolutions.com\share\Public\Assemblies\BargeOps\4.8\Csg.AppFramework.Server.DataPortal.dll</HintPath>
+    </Reference>
+    <Reference Include="Csg.Diagnostics.ExceptionManagement, Version=2.0.9358.20330, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\csgsolutions.com\share\Public\Assemblies\BargeOps\4.8\Csg.Diagnostics.ExceptionManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Csg.Security.Cryptography, Version=1.0.9358.20351, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\csgsolutions.com\share\Public\Assemblies\BargeOps\4.8\Csg.Security.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Csg.Utilities, Version=2.0.9358.20452, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\csgsolutions.com\share\Public\Assemblies\BargeOps\4.8\Csg.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Csg.Windows.Forms.Security.4, Version=4.0.9358.20497, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\csgsolutions.com\share\Public\Assemblies\BargeOps\4.8\Csg.Windows.Forms.Security.4.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Data.SqlClient" />
+    <Import Include="System.Diagnostics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppPermission.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Business Objects\AccountingExport.vb" />
+    <Compile Include="Business Objects\Alert.vb" />
+    <Compile Include="Business Objects\Api.vb" />
+    <Compile Include="Business Objects\AuditEventRate.vb" />
+    <Compile Include="Business Objects\AuditTicketEvent.vb" />
+    <Compile Include="Business Objects\Barge.vb" />
+    <Compile Include="Business Objects\BargeCharter.vb" />
+    <Compile Include="Business Objects\BargeCharters.vb" />
+    <Compile Include="Business Objects\BargeCommodity.vb" />
+    <Compile Include="Business Objects\BargeCondition.vb" />
+    <Compile Include="Business Objects\BargeConditionPhoto.vb" />
+    <Compile Include="Business Objects\BargeConditionPhotoes.vb" />
+    <Compile Include="Business Objects\BargeDailyExpense.vb" />
+    <Compile Include="Business Objects\BargeDailyExpenseDate.vb" />
+    <Compile Include="Business Objects\BargeDailyExpenses.vb" />
+    <Compile Include="Business Objects\BargeEvent.vb" />
+    <Compile Include="Business Objects\BargeExCodeMap.vb" />
+    <Compile Include="Business Objects\BargeExConfig.vb" />
+    <Compile Include="Business Objects\BargeExTransactionInbox.vb" />
+    <Compile Include="Business Objects\BargeExTransactionOutbox.vb" />
+    <Compile Include="Business Objects\BargeExVendorDocumentInbox.vb" />
+    <Compile Include="Business Objects\BargeMovement.vb" />
+    <Compile Include="Business Objects\BargeMovements.vb" />
+    <Compile Include="Business Objects\BargePosition.vb" />
+    <Compile Include="Business Objects\BargePositions.vb" />
+    <Compile Include="Business Objects\BargeSeries.vb" />
+    <Compile Include="Business Objects\BargeSeriesDraft.vb" />
+    <Compile Include="Business Objects\BargeSeriesDrafts.vb" />
+    <Compile Include="Business Objects\BargeTicketCargo.vb" />
+    <Compile Include="Business Objects\BargeTicketCargoes.vb" />
+    <Compile Include="Business Objects\BargeToken.vb" />
+    <Compile Include="Business Objects\BargeTokenMap.vb" />
+    <Compile Include="Business Objects\BargeTokenStatus.vb" />
+    <Compile Include="Business Objects\BargeTokenStatuses.vb" />
+    <Compile Include="Business Objects\BargeTowingTonnage.vb" />
+    <Compile Include="Business Objects\Base Classes\AlertBase.vb" />
+    <Compile Include="Business Objects\Base Classes\AuditBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeCharterBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeChartersBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeConditionBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeConditionPhotoBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeConditionPhotoesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeDailyExpenseBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeDailyExpenseDateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeDailyExpensesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeExCodeMapBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeExConfigBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeExTransactionInboxBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeExTransactionOutboxBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeExVendorDocumentInboxBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeMovementBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeMovementsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeSeriesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeSeriesDraftBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeSeriesDraftsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeTicketCargoBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeTicketCargoesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeTokenBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeTokenMapBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeTokenStatusBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeTokenStatusesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BargeTowingTonnageBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatArrivalBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatCharterBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatCharterDocumentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatCharterDocumentsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatDailyExpenseBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatDailyExpenseDateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatDailyExpensesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatDelayBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatDelaysBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatFuelBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatFuelPriceBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatFuelsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatHoursBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatHoursesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatLocationBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatMaintenanceLogBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatMaintenanceLogsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatPositionHistoryBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatProductivityModelBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatProductivityModelDateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatProductivityModelsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatRoleBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatRoleDeckLogActivityGroupBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatRoleDeckLogActivityGroupsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatRoleWatchScheduleBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatTrafficTicketBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatTrafficTicketsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BusinessLogicBase.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Business Objects\Base Classes\BusinessLogicCollectionBase.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Business Objects\Base Classes\BusinessRateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CalendarBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CalendarDayBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CalendarDaysBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoDelayBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoDelayEquipmentsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoDelayEquipmentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoRateBargeDemurrageBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoRateBargeDemurragesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoRateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoRateStorageBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoRateStoragesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoRateTransferBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoRateTransfersBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoStockpileBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoStockpilesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoStorageBillBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoStorageBillItemBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoStorageBillItemsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoStorageInvoiceBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoTransferBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoTransferDocumentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoTransferEquipmentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoTransferEquipmentsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\BoatTrafficBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoTransferInvoiceBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CargoTransferInvoiceDocumentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ChecklistItemBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ChecklistItemTemplateAssignmentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ChecklistItemTemplateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CrewMemberActivityLogBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupBusinessUnitBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupBusinessUnitsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupCustomerBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupCustomersBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupDestFacilitiesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupDestFacilityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupOriginFacilitiesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupOriginFacilityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupReportBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupReportsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityBoatBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityBoatsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityGroupBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityGroupMemberBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityGroupMembersBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityTypeReminderBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityTypeReminderBoatRoleBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityTypeReminderBoatRolesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeletedCrewMemberActivityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeletedDeckLogActivityBargeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeletedDeckLogActivityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DemurrageInvoiceBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DemurrageInvoiceDocumentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EmailOutboxAttachmentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EmailOutboxAttachmentsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EmailOutboxBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EmailSendStatusBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FacilityStatusBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FacilityStatusesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FormBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FormFieldResponseAuditBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FormFieldResponseAuditsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FormFieldResponseBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FormFieldResponsesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightContractGroupBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightDemurrageBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightEscalatorIndexBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightInvoiceBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightInvoiceDocumentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FuelEconomyHistoriesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FuelEconomyHistoryBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FuelVendorPricingBase.vb" />
+    <Compile Include="Business Objects\Base Classes\HighWaterEventTypeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\HighWaterEventTypesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\InvoiceDocumentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\InvoiceSendStatusBase.vb" />
+    <Compile Include="Business Objects\Base Classes\LockStatusBase.vb" />
+    <Compile Include="Business Objects\Base Classes\MidnightTowDiagramBargeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\MidnightTowDiagramBargesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\MidnightTowDiagramBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardResourceBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardResourceBoatRoleBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardResourceBoatRolesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardSettingBoatBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardSettingBoatsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardSettingGroupBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardSettingOverrideBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardSettingOverridesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OpisFuelPriceBase.vb" />
+    <Compile Include="Business Objects\Base Classes\PartsServiceBillDocumentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\PriceIndexBase.vb" />
+    <Compile Include="Business Objects\Base Classes\RebillBase.vb" />
+    <Compile Include="Business Objects\Base Classes\RebillItemBase.vb" />
+    <Compile Include="Business Objects\Base Classes\RebillItemsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\RiverSegmentDraftBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TaskBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketDocumentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventDemurrageAdjustmentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventDemurrageAdjustmentsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventDemurrageBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventHighWaterBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventHighWatersBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TierGroupFilterBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TierGroupFilterItemBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TierGroupFilterItemsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TrainTicketCargoBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TrainTicketCargoesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TruckTicketCargoBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TruckTicketCargoesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\UnitTowOnboardInboxErrBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorBusinessUnitBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorBusinessUnitsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupDestFacilitiesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupDestFacilityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupReportBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupReportsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupCustomerBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupCustomersBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupCriteriaBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupCriteriasBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupDestAreaBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupDestAreasBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupEventBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupEventsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupUserBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorPortalGroupUsersBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CoverSubTypeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupContractBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupContractsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupCriteriaBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupCriteriasBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupDestAreaBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupDestAreasBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupEventBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupEventsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupUserBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerPortalGroupUsersBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityTypeDivisionBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityTypeDivisionsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateCustomerBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateCustomersBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateDivisionBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateDivisionsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateFacilitiesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateFacilityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateZoneBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateZonesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FleetPositionHistoryBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightContractBargeMinimumBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightContractBargeMinimumsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardQueryResultBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventAuditBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ColorPairBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CommodityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ConsignFacilitiesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ConsignFacilityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CrewMemberActivitiesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CrewMemberActivityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CrewMemberBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerBargeExTransactionBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerBargeExTransactionsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerContactBase.vb" />
+    <Compile Include="Business Objects\Base Classes\CustomerContactsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityBargeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityBargesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DeckLogActivityTypeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DivisionCodeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DocumentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DraftBase.vb" />
+    <Compile Include="Business Objects\Base Classes\DropPickupFeeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EquipmentMaintenanceBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateAuditBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateAuditsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateScheduleBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventRateSchedulesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\EventTypeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FacilityBerthBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FacilityBerthsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FacilityLocationBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FleetBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FleetFacilitiesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FleetFacilityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightBaseRateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightBaseRatesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightContractBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightContractChargeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightContractChargesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightContractEscalatorBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightContractEscalatorsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightDemurrageRateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightDemurrageRatesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightDocumentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightDocumentsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightForceMajeureBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightForceMajeuresBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightRateEscalationBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightRateEscalationsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightQuantityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FreightQuantitiesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FuelPriceScheduleBase.vb" />
+    <Compile Include="Business Objects\Base Classes\FuelRateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\GlobalSettingBase.vb" />
+    <Compile Include="Business Objects\Base Classes\GlobalSettingsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\GlobalSettingTypeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\HighWaterEventBase.vb" />
+    <Compile Include="Business Objects\Base Classes\HighWaterRateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\HighWaterScheduleBase.vb" />
+    <Compile Include="Business Objects\Base Classes\InventoryAdjustmentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\InventoryAdjustmentsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\InvoiceBase.vb" />
+    <Compile Include="Business Objects\Base Classes\InvoiceItemBase.vb" />
+    <Compile Include="Business Objects\Base Classes\InvoiceItemsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\LaborCostScheduleBase.vb" />
+    <Compile Include="Business Objects\Base Classes\LaborRateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\LicensesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\LocationBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardInboxBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardOrderAssignedBoatBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardOrderAssignedBoatsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardOrderBargeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardOrderBargesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardOrderBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardOrderBoatBase.vb" />
+    <Compile Include="Business Objects\Base Classes\OnboardOrderBoatsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\PartsServiceBillBase.vb" />
+    <Compile Include="Business Objects\Base Classes\PartsServiceBillItemAdjustmentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\PartsServiceBillItemAdjustmentsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\PartsServiceBillItemBase.vb" />
+    <Compile Include="Business Objects\Base Classes\PartsServiceBillItemsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\PartsServiceCodeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\PartsServiceRateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\PartsServiceRateScheduleBase.vb" />
+    <Compile Include="Business Objects\Base Classes\PartsServiceRateSchedulesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\PictureBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ReportBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ReportCategoryBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ReportFilterBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ReportFilterParameterBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ReportFilterParametersBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ReportParameterBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ReportParametersBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ReportParameterTypeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ReportRoleBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ReportRolesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\RiverAreaBase.vb" />
+    <Compile Include="Business Objects\Base Classes\RiverAreaSegmentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\RiverAreaSegmentsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\RiverBase.vb" />
+    <Compile Include="Business Objects\Base Classes\RoleBase.vb" />
+    <Compile Include="Business Objects\Base Classes\RolePermissionBase.vb" />
+    <Compile Include="Business Objects\Base Classes\RolePermissionsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipLocationBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipRateBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipRateChargeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipRateChargeCommoditiesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipRateChargeCommodityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipRateChargesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipTicketAssistTugBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipTicketAssistTugsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipTicketBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipTicketBillingBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipTicketBillingsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipTicketDelayBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipTicketDelaysBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipTicketInvoiceBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipTicketInvoiceItemBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipTicketInvoiceItemsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipTicketScaleReadingBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ShipTicketScaleReadingsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventAdjustmentBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventAdjustmentsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventAuditsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventDelayBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventDelaysBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventZoneBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TicketEventZonesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TierBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TierGroupBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TowDiagramInboundBargeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TowDiagramInboundBargesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TowDiagramInboundBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TowDiagramOutboundBargeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TowDiagramOutboundBargesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TowDiagramOutboundBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TrainTicketBase.vb" />
+    <Compile Include="Business Objects\Base Classes\TruckTicketBase.vb" />
+    <Compile Include="Business Objects\Base Classes\UserAppSettingsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\UserBase.vb" />
+    <Compile Include="Business Objects\Base Classes\UserFleetRoleBase.vb" />
+    <Compile Include="Business Objects\Base Classes\UserFleetViewBase.vb" />
+    <Compile Include="Business Objects\Base Classes\UserFleetViewItemBase.vb" />
+    <Compile Include="Business Objects\Base Classes\UserFleetViewItemsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ValidationBase.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Business Objects\Base Classes\ValidationTypeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorBillBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorBillItemBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorBillItemsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorContactBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VendorContactsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordActivitiesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordActivityBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordAuditBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordAuditsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordCrewBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordCrewsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordDetailBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordDetailsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordMidnightTowDiagramBargeBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordMidnightTowDiagramBargesBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordMidnightTowDiagramBase.vb" />
+    <Compile Include="Business Objects\Base Classes\VesselRecordMidnightTowDiagramsBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ViewFleetColorBase.vb" />
+    <Compile Include="Business Objects\Base Classes\ViewFleetColorsBase.vb" />
+    <Compile Include="Business Objects\BillableItem.vb" />
+    <Compile Include="Business Objects\BillableItems.vb" />
+    <Compile Include="Business Objects\BoatArrival.vb" />
+    <Compile Include="Business Objects\BoatCharter.vb" />
+    <Compile Include="Business Objects\BoatCharterDocument.vb" />
+    <Compile Include="Business Objects\BoatCharterDocuments.vb" />
+    <Compile Include="Business Objects\BoatDailyExpense.vb" />
+    <Compile Include="Business Objects\BoatDailyExpenseDate.vb" />
+    <Compile Include="Business Objects\BoatDailyExpenses.vb" />
+    <Compile Include="Business Objects\BoatDelay.vb" />
+    <Compile Include="Business Objects\BoatDelays.vb" />
+    <Compile Include="Business Objects\BoatFuel.vb" />
+    <Compile Include="Business Objects\BoatFuelPrice.vb" />
+    <Compile Include="Business Objects\BoatFuels.vb" />
+    <Compile Include="Business Objects\BoatHours.vb" />
+    <Compile Include="Business Objects\BoatHourses.vb" />
+    <Compile Include="Business Objects\BoatLocation.vb" />
+    <Compile Include="Business Objects\BoatMaintenanceLog.vb" />
+    <Compile Include="Business Objects\BoatMaintenanceLogs.vb" />
+    <Compile Include="Business Objects\BoatPositionHistory.vb" />
+    <Compile Include="Business Objects\BoatProductivityModel.vb" />
+    <Compile Include="Business Objects\BoatProductivityModelDate.vb" />
+    <Compile Include="Business Objects\BoatProductivityModels.vb" />
+    <Compile Include="Business Objects\BoatRole.vb" />
+    <Compile Include="Business Objects\BoatRoleDeckLogActivityGroup.vb" />
+    <Compile Include="Business Objects\BoatRoleDeckLogActivityGroups.vb" />
+    <Compile Include="Business Objects\BoatRoleWatchSchedule.vb" />
+    <Compile Include="Business Objects\BoatTrafficTicket.vb" />
+    <Compile Include="Business Objects\BoatTrafficTickets.vb" />
+    <Compile Include="Business Objects\Calendar.vb" />
+    <Compile Include="Business Objects\CalendarDay.vb" />
+    <Compile Include="Business Objects\CalendarDays.vb" />
+    <Compile Include="Business Objects\Cargo.vb" />
+    <Compile Include="Business Objects\CargoDelay.vb" />
+    <Compile Include="Business Objects\CargoDelayEquipment.vb" />
+    <Compile Include="Business Objects\CargoDelayEquipments.vb" />
+    <Compile Include="Business Objects\CargoRate.vb" />
+    <Compile Include="Business Objects\CargoRateBargeDemurrage.vb" />
+    <Compile Include="Business Objects\CargoRateBargeDemurrages.vb" />
+    <Compile Include="Business Objects\CargoRateStorage.vb" />
+    <Compile Include="Business Objects\CargoRateStorages.vb" />
+    <Compile Include="Business Objects\CargoRateTransfer.vb" />
+    <Compile Include="Business Objects\CargoRateTransfers.vb" />
+    <Compile Include="Business Objects\CargoStockpile.vb" />
+    <Compile Include="Business Objects\CargoStockpiles.vb" />
+    <Compile Include="Business Objects\CargoStorageBill.vb" />
+    <Compile Include="Business Objects\CargoStorageBillItem.vb" />
+    <Compile Include="Business Objects\CargoStorageBillItems.vb" />
+    <Compile Include="Business Objects\CargoStorageInvoice.vb" />
+    <Compile Include="Business Objects\CargoTransfer.vb" />
+    <Compile Include="Business Objects\CargoTransferDocument.vb" />
+    <Compile Include="Business Objects\CargoTransferEquipment.vb" />
+    <Compile Include="Business Objects\CargoTransferEquipments.vb" />
+    <Compile Include="Business Objects\CargoTransferInvoice.vb" />
+    <Compile Include="Business Objects\CargoTransferInvoiceDocument.vb" />
+    <Compile Include="Business Objects\CargoTransferTonnage.vb" />
+    <Compile Include="Business Objects\ChecklistItem.vb" />
+    <Compile Include="Business Objects\ChecklistItemTemplate.vb" />
+    <Compile Include="Business Objects\ChecklistItemTemplateAssignment.vb" />
+    <Compile Include="Business Objects\ColorPair.vb" />
+    <Compile Include="Business Objects\Commodity.vb" />
+    <Compile Include="Business Objects\ConsignFacilities.vb" />
+    <Compile Include="Business Objects\ConsignFacility.vb" />
+    <Compile Include="Business Objects\BoatTraffic.vb" />
+    <Compile Include="Business Objects\CrewMemberActivityLog.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupBusinessUnit.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupBusinessUnits.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupCustomer.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupCustomers.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupDestFacilities.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupDestFacility.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupOriginFacilities.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupOriginFacility.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupReport.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupReports.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroups.vb" />
+    <Compile Include="Business Objects\DeckLogActivityBoat.vb" />
+    <Compile Include="Business Objects\DeckLogActivityBoats.vb" />
+    <Compile Include="Business Objects\DeckLogActivityGroup.vb" />
+    <Compile Include="Business Objects\DeckLogActivityGroupMember.vb" />
+    <Compile Include="Business Objects\DeckLogActivityGroupMembers.vb" />
+    <Compile Include="Business Objects\DeckLogActivityTypeReminder.vb" />
+    <Compile Include="Business Objects\DeckLogActivityTypeReminderBoatRole.vb" />
+    <Compile Include="Business Objects\DeckLogActivityTypeReminderBoatRoles.vb" />
+    <Compile Include="Business Objects\DeletedCrewMemberActivity.vb" />
+    <Compile Include="Business Objects\DeletedDeckLogActivity.vb" />
+    <Compile Include="Business Objects\DeletedDeckLogActivityBarge.vb" />
+    <Compile Include="Business Objects\DemurrageInvoice.vb" />
+    <Compile Include="Business Objects\DemurrageInvoiceDocument.vb" />
+    <Compile Include="Business Objects\DemurrageRate.vb" />
+    <Compile Include="Business Objects\EmailOutbox.vb" />
+    <Compile Include="Business Objects\EmailOutboxAttachment.vb" />
+    <Compile Include="Business Objects\EmailOutboxAttachments.vb" />
+    <Compile Include="Business Objects\EmailSendStatus.vb" />
+    <Compile Include="Business Objects\FacilityStatus.vb" />
+    <Compile Include="Business Objects\FacilityStatusesBase.vb" />
+    <Compile Include="Business Objects\Form.vb" />
+    <Compile Include="Business Objects\FormFieldResponse.vb" />
+    <Compile Include="Business Objects\FormFieldResponseAudit.vb" />
+    <Compile Include="Business Objects\FormFieldResponseAudits.vb" />
+    <Compile Include="Business Objects\FormFieldResponses.vb" />
+    <Compile Include="Business Objects\FreightContractGroup.vb" />
+    <Compile Include="Business Objects\FreightDemurrage.vb" />
+    <Compile Include="Business Objects\FreightEscalatorIndex.vb" />
+    <Compile Include="Business Objects\FreightInvoice.vb" />
+    <Compile Include="Business Objects\FreightInvoiceDocument.vb" />
+    <Compile Include="Business Objects\FuelEconomyHistories.vb" />
+    <Compile Include="Business Objects\FuelEconomyHistory.vb" />
+    <Compile Include="Business Objects\FuelVendorPricing.vb" />
+    <Compile Include="Business Objects\HighWaterEventType.vb" />
+    <Compile Include="Business Objects\HighWaterEventTypes.vb" />
+    <Compile Include="Business Objects\InvoiceBackupDocument.vb" />
+    <Compile Include="Business Objects\InvoiceDocument.vb" />
+    <Compile Include="Business Objects\InvoiceSendStatus.vb" />
+    <Compile Include="Business Objects\LockStatus.vb" />
+    <Compile Include="Business Objects\MidnightTowDiagram.vb" />
+    <Compile Include="Business Objects\MidnightTowDiagramBarge.vb" />
+    <Compile Include="Business Objects\MidnightTowDiagramBarges.vb" />
+    <Compile Include="Business Objects\OnboardResource.vb" />
+    <Compile Include="Business Objects\OnboardResourceBoatRole.vb" />
+    <Compile Include="Business Objects\OnboardResourceBoatRoles.vb" />
+    <Compile Include="Business Objects\OnboardSettingBoat.vb" />
+    <Compile Include="Business Objects\OnboardSettingBoats.vb" />
+    <Compile Include="Business Objects\OnboardSettingGroup.vb" />
+    <Compile Include="Business Objects\OnboardSettingOverride.vb" />
+    <Compile Include="Business Objects\OnboardSettingOverrides.vb" />
+    <Compile Include="Business Objects\OpisFuelPrice.vb" />
+    <Compile Include="Business Objects\PartsServiceBillDocument.vb" />
+    <Compile Include="Business Objects\PriceIndex.vb" />
+    <Compile Include="Business Objects\Rebill.vb" />
+    <Compile Include="Business Objects\RebillItem.vb" />
+    <Compile Include="Business Objects\RebillItems.vb" />
+    <Compile Include="Business Objects\RetryHelmConnectUpdate.vb" />
+    <Compile Include="Business Objects\RetryOnboardInboxTransaction.vb" />
+    <Compile Include="Business Objects\RetryUnitTowTransaction.vb" />
+    <Compile Include="Business Objects\RiverSegmentDraft.vb" />
+    <Compile Include="Business Objects\Task.vb" />
+    <Compile Include="Business Objects\TicketDocument.vb" />
+    <Compile Include="Business Objects\TicketEventDemurrage.vb" />
+    <Compile Include="Business Objects\TicketEventDemurrageAdjustment.vb" />
+    <Compile Include="Business Objects\TicketEventDemurrageAdjustments.vb" />
+    <Compile Include="Business Objects\TicketEventHighWater.vb" />
+    <Compile Include="Business Objects\TicketEventHighWaters.vb" />
+    <Compile Include="Business Objects\TierGroupFilter.vb" />
+    <Compile Include="Business Objects\TierGroupFilterItem.vb" />
+    <Compile Include="Business Objects\TierGroupFilterItems.vb" />
+    <Compile Include="Business Objects\TrainTicketCargo.vb" />
+    <Compile Include="Business Objects\TrainTicketCargoes.vb" />
+    <Compile Include="Business Objects\TruckTicketCargo.vb" />
+    <Compile Include="Business Objects\TruckTicketCargoes.vb" />
+    <Compile Include="Business Objects\UnitTowOnboardInboxErr.vb" />
+    <Compile Include="Business Objects\VendorBusinessUnit.vb" />
+    <Compile Include="Business Objects\VendorBusinessUnits.vb" />
+    <Compile Include="Business Objects\VendorPortalGroup.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupCustomer.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupCustomers.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupCriteria.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupCriterias.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupDestArea.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupDestAreas.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupDestFacilities.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupDestFacility.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupEvent.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupEvents.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupReport.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupReports.vb" />
+    <Compile Include="Business Objects\VendorPortalGroups.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupUser.vb" />
+    <Compile Include="Business Objects\VendorPortalGroupUsers.vb" />
+    <Compile Include="Business Objects\CoverSubType.vb" />
+    <Compile Include="Business Objects\CrewMember.vb" />
+    <Compile Include="Business Objects\CrewMemberActivities.vb" />
+    <Compile Include="Business Objects\CrewMemberActivity.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroup.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupContract.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupContracts.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupCriteria.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupCriterias.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupDestArea.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupDestAreas.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupEvent.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupEvents.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupUser.vb" />
+    <Compile Include="Business Objects\CustomerPortalGroupUsers.vb" />
+    <Compile Include="Business Objects\DeckLogActivity.vb" />
+    <Compile Include="Business Objects\DeckLogActivityBarge.vb" />
+    <Compile Include="Business Objects\DeckLogActivityBarges.vb" />
+    <Compile Include="Business Objects\DeckLogActivityType.vb" />
+    <Compile Include="Business Objects\DeckLogActivityTypeDivision.vb" />
+    <Compile Include="Business Objects\DeckLogActivityTypeDivisions.vb" />
+    <Compile Include="Business Objects\DirectAccess.vb" />
+    <Compile Include="Business Objects\DivisionCode.vb" />
+    <Compile Include="Business Objects\Document.vb" />
+    <Compile Include="Business Objects\DropPickupFee.vb" />
+    <Compile Include="Business Objects\EquipmentMaintenance.vb" />
+    <Compile Include="Business Objects\EventRateCustomer.vb" />
+    <Compile Include="Business Objects\EventRateCustomers.vb" />
+    <Compile Include="Business Objects\EventRateDivision.vb" />
+    <Compile Include="Business Objects\EventRateDivisions.vb" />
+    <Compile Include="Business Objects\EventRateFacilities.vb" />
+    <Compile Include="Business Objects\EventRateFacility.vb" />
+    <Compile Include="Business Objects\EventRateZone.vb" />
+    <Compile Include="Business Objects\EventRateZones.vb" />
+    <Compile Include="Business Objects\EventType.vb" />
+    <Compile Include="Business Objects\FleetFacilities.vb" />
+    <Compile Include="Business Objects\FleetFacility.vb" />
+    <Compile Include="Business Objects\FleetPositionHistory.vb" />
+    <Compile Include="Business Objects\FreightBaseRate.vb" />
+    <Compile Include="Business Objects\FreightBaseRates.vb" />
+    <Compile Include="Business Objects\FreightContract.vb" />
+    <Compile Include="Business Objects\FreightContractBargeMinimum.vb" />
+    <Compile Include="Business Objects\FreightContractBargeMinimums.vb" />
+    <Compile Include="Business Objects\FreightContractCharge.vb" />
+    <Compile Include="Business Objects\FreightContractCharges.vb" />
+    <Compile Include="Business Objects\FreightContractEscalator.vb" />
+    <Compile Include="Business Objects\FreightContractEscalators.vb" />
+    <Compile Include="Business Objects\FreightDemurrageRate.vb" />
+    <Compile Include="Business Objects\FreightDemurrageRates.vb" />
+    <Compile Include="Business Objects\FreightDocument.vb" />
+    <Compile Include="Business Objects\FreightDocuments.vb" />
+    <Compile Include="Business Objects\FreightForceMajeure.vb" />
+    <Compile Include="Business Objects\FreightForceMajeures.vb" />
+    <Compile Include="Business Objects\FreightRate.vb" />
+    <Compile Include="Business Objects\FreightRateEscalation.vb" />
+    <Compile Include="Business Objects\FreightRateEscalations.vb" />
+    <Compile Include="Business Objects\FreightQuantity.vb" />
+    <Compile Include="Business Objects\FreightQuantities.vb" />
+    <Compile Include="Business Objects\HighWaterEvent.vb" />
+    <Compile Include="Business Objects\InventoryAdjustment.vb" />
+    <Compile Include="Business Objects\InventoryAdjustments.vb" />
+    <Compile Include="Business Objects\Licenses.vb" />
+    <Compile Include="Business Objects\OnboardInbox.vb" />
+    <Compile Include="Business Objects\OnboardOrder.vb" />
+    <Compile Include="Business Objects\OnboardOrderAssignedBoat.vb" />
+    <Compile Include="Business Objects\OnboardOrderAssignedBoats.vb" />
+    <Compile Include="Business Objects\OnboardOrderBarge.vb" />
+    <Compile Include="Business Objects\OnboardOrderBarges.vb" />
+    <Compile Include="Business Objects\OnboardOrderBoat.vb" />
+    <Compile Include="Business Objects\OnboardOrderBoats.vb" />
+    <Compile Include="Business Objects\OnboardQueryResult.vb" />
+    <Compile Include="Business Objects\PartsServiceBill.vb" />
+    <Compile Include="Business Objects\PartsServiceBillItem.vb" />
+    <Compile Include="Business Objects\PartsServiceBillItemAdjustment.vb" />
+    <Compile Include="Business Objects\PartsServiceBillItemAdjustments.vb" />
+    <Compile Include="Business Objects\PartsServiceBillItems.vb" />
+    <Compile Include="Business Objects\PartsServiceCode.vb" />
+    <Compile Include="Business Objects\PartsServiceRate.vb" />
+    <Compile Include="Business Objects\PartsServiceRateSchedule.vb" />
+    <Compile Include="Business Objects\PartsServiceRateSchedules.vb" />
+    <Compile Include="Business Objects\RetryBargeExTransaction.vb" />
+    <Compile Include="Business Objects\RiverArea.vb" />
+    <Compile Include="Business Objects\RiverAreaSegment.vb" />
+    <Compile Include="Business Objects\RiverAreaSegments.vb" />
+    <Compile Include="Business Objects\ShipBerth.vb" />
+    <Compile Include="Business Objects\Cryptography.vb" />
+    <Compile Include="Business Objects\Customer.vb" />
+    <Compile Include="Business Objects\CustomerBargeExTransaction.vb" />
+    <Compile Include="Business Objects\CustomerBargeExTransactions.vb" />
+    <Compile Include="Business Objects\CustomerContact.vb" />
+    <Compile Include="Business Objects\CustomerContacts.vb" />
+    <Compile Include="Business Objects\Draft.vb" />
+    <Compile Include="Business Objects\EventRate.vb" />
+    <Compile Include="Business Objects\EventRateAudit.vb" />
+    <Compile Include="Business Objects\EventRateAudits.vb" />
+    <Compile Include="Business Objects\EventRateSchedule.vb" />
+    <Compile Include="Business Objects\EventRateSchedules.vb" />
+    <Compile Include="Business Objects\FacilityBerth.vb" />
+    <Compile Include="Business Objects\FacilityBerths.vb" />
+    <Compile Include="Business Objects\FacilityLocation.vb" />
+    <Compile Include="Business Objects\Fleet.vb" />
+    <Compile Include="Business Objects\FuelPriceSchedule.vb" />
+    <Compile Include="Business Objects\FuelRate.vb" />
+    <Compile Include="Business Objects\GlobalSetting.vb" />
+    <Compile Include="Business Objects\GlobalSettings.vb" />
+    <Compile Include="Business Objects\GlobalSettingType.vb" />
+    <Compile Include="Business Objects\HighWaterRate.vb" />
+    <Compile Include="Business Objects\HighWaterSchedule.vb" />
+    <Compile Include="Business Objects\Invoice.vb" />
+    <Compile Include="Business Objects\InvoiceItem.vb" />
+    <Compile Include="Business Objects\InvoiceItems.vb" />
+    <Compile Include="Business Objects\LaborCostSchedule.vb" />
+    <Compile Include="Business Objects\LaborRate.vb" />
+    <Compile Include="Business Objects\Location.vb" />
+    <Compile Include="Business Objects\Picture.vb" />
+    <Compile Include="Business Objects\Rate.vb" />
+    <Compile Include="Business Objects\Report.vb" />
+    <Compile Include="Business Objects\ReportCategory.vb" />
+    <Compile Include="Business Objects\ReportFilter.vb" />
+    <Compile Include="Business Objects\ReportFilterParameter.vb" />
+    <Compile Include="Business Objects\ReportFilterParameters.vb" />
+    <Compile Include="Business Objects\ReportParameter.vb" />
+    <Compile Include="Business Objects\ReportParameters.vb" />
+    <Compile Include="Business Objects\ReportParameterType.vb" />
+    <Compile Include="Business Objects\ReportRole.vb" />
+    <Compile Include="Business Objects\ReportRoles.vb" />
+    <Compile Include="Business Objects\River.vb" />
+    <Compile Include="Business Objects\Role.vb" />
+    <Compile Include="Business Objects\RolePermission.vb" />
+    <Compile Include="Business Objects\RolePermissions.vb" />
+    <Compile Include="Business Objects\ShipLocation.vb" />
+    <Compile Include="Business Objects\ShipRate.vb" />
+    <Compile Include="Business Objects\ShipRateCharge.vb" />
+    <Compile Include="Business Objects\ShipRateChargeCommodities.vb" />
+    <Compile Include="Business Objects\ShipRateChargeCommodity.vb" />
+    <Compile Include="Business Objects\ShipRateCharges.vb" />
+    <Compile Include="Business Objects\ShipTicket.vb" />
+    <Compile Include="Business Objects\ShipTicketAssistTug.vb" />
+    <Compile Include="Business Objects\ShipTicketAssistTugs.vb" />
+    <Compile Include="Business Objects\ShipTicketBilling.vb" />
+    <Compile Include="Business Objects\ShipTicketBillings.vb" />
+    <Compile Include="Business Objects\ShipTicketDelay.vb" />
+    <Compile Include="Business Objects\ShipTicketDelays.vb" />
+    <Compile Include="Business Objects\ShipTicketInvoice.vb" />
+    <Compile Include="Business Objects\ShipTicketInvoiceItem.vb" />
+    <Compile Include="Business Objects\ShipTicketInvoiceItems.vb" />
+    <Compile Include="Business Objects\ShipTicketScaleReading.vb" />
+    <Compile Include="Business Objects\ShipTicketScaleReadings.vb" />
+    <Compile Include="Business Objects\SwapBarges.vb" />
+    <Compile Include="Business Objects\SwapTicketEvents.vb" />
+    <Compile Include="Business Objects\Ticket.vb" />
+    <Compile Include="Business Objects\TicketEvent.vb" />
+    <Compile Include="Business Objects\TicketEventAdjustment.vb" />
+    <Compile Include="Business Objects\TicketEventAdjustments.vb" />
+    <Compile Include="Business Objects\TicketEventAudit.vb" />
+    <Compile Include="Business Objects\TicketEventAudits.vb" />
+    <Compile Include="Business Objects\TicketEventDelay.vb" />
+    <Compile Include="Business Objects\TicketEventDelays.vb" />
+    <Compile Include="Business Objects\TicketEvents.vb" />
+    <Compile Include="Business Objects\TicketEventZone.vb" />
+    <Compile Include="Business Objects\TicketEventZones.vb" />
+    <Compile Include="Business Objects\Tier.vb" />
+    <Compile Include="Business Objects\TierGroup.vb" />
+    <Compile Include="Business Objects\TowDiagramInbound.vb" />
+    <Compile Include="Business Objects\TowDiagramInboundBarge.vb" />
+    <Compile Include="Business Objects\TowDiagramInboundBarges.vb" />
+    <Compile Include="Business Objects\TowDiagramOutbound.vb" />
+    <Compile Include="Business Objects\TowDiagramOutboundBarge.vb" />
+    <Compile Include="Business Objects\TowDiagramOutboundBarges.vb" />
+    <Compile Include="Business Objects\TrainTicket.vb" />
+    <Compile Include="Business Objects\TruckTicket.vb" />
+    <Compile Include="Business Objects\User.vb" />
+    <Compile Include="Business Objects\UserAppSettings.vb" />
+    <Compile Include="Business Objects\UserFleetRole.vb" />
+    <Compile Include="Business Objects\UserFleetView.vb" />
+    <Compile Include="Business Objects\UserFleetViewItem.vb" />
+    <Compile Include="Business Objects\UserFleetViewItems.vb" />
+    <Compile Include="Business Objects\Validation.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Business Objects\ValidationType.vb" />
+    <Compile Include="Business Objects\Vendor.vb" />
+    <Compile Include="Business Objects\VendorBill.vb" />
+    <Compile Include="Business Objects\VendorBillItem.vb" />
+    <Compile Include="Business Objects\VendorBillItems.vb" />
+    <Compile Include="Business Objects\VendorContact.vb" />
+    <Compile Include="Business Objects\VendorContacts.vb" />
+    <Compile Include="Business Objects\VesselRecord.vb" />
+    <Compile Include="Business Objects\VesselRecordActivities.vb" />
+    <Compile Include="Business Objects\VesselRecordActivity.vb" />
+    <Compile Include="Business Objects\VesselRecordAudit.vb" />
+    <Compile Include="Business Objects\VesselRecordAudits.vb" />
+    <Compile Include="Business Objects\VesselRecordCrew.vb" />
+    <Compile Include="Business Objects\VesselRecordCrews.vb" />
+    <Compile Include="Business Objects\VesselRecordDetail.vb" />
+    <Compile Include="Business Objects\VesselRecordDetails.vb" />
+    <Compile Include="Business Objects\VesselRecordMidnightTowDiagram.vb" />
+    <Compile Include="Business Objects\VesselRecordMidnightTowDiagramBarge.vb" />
+    <Compile Include="Business Objects\VesselRecordMidnightTowDiagramBarges.vb" />
+    <Compile Include="Business Objects\VesselRecordMidnightTowDiagrams.vb" />
+    <Compile Include="Business Objects\ViewFleetColor.vb" />
+    <Compile Include="Business Objects\ViewFleetColors.vb" />
+    <Compile Include="Exceptions\BargeEventNotStartedException.vb" />
+    <Compile Include="Exceptions\BargeHasOtherOpenTicketsException.vb" />
+    <Compile Include="Exceptions\CannotUndoCompleteException.vb" />
+    <Compile Include="Exceptions\CannotVoidCargoTransferException.vb" />
+    <Compile Include="Exceptions\HasBrokenRulesException.vb" />
+    <Compile Include="Exceptions\InvalidUrlException.vb" />
+    <Compile Include="Exceptions\NoAccessException.vb" />
+    <Compile Include="Exceptions\OperationInvalidWhenBargeIsInactive.vb" />
+    <Compile Include="Exceptions\NonMatchingEventFieldsException.vb" />
+    <Compile Include="Exceptions\OperationInvalidWhenInvoiced.vb" />
+    <Compile Include="Exceptions\OperationInvalidWhenVoided.vb" />
+    <Compile Include="Exceptions\UnvoidedCargoTransferException.vb" />
+    <Compile Include="Helpers\ConversionHelper.vb" />
+    <Compile Include="Helpers\DBHelper.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\IdentityHelper.vb" />
+    <Compile Include="Helpers\RegexHelper.vb" />
+    <Compile Include="Interfaces\ILicense.vb" />
+    <Compile Include="Lists\ApiBargeTripList.vb" />
+    <Compile Include="Lists\AepComtracTripList.vb" />
+    <Compile Include="Lists\AlertSearch.vb" />
+    <Compile Include="Lists\AlertTypeList.vb" />
+    <Compile Include="Lists\ApiBargesUpdatedList.vb" />
+    <Compile Include="Lists\ApiOutboxList.vb" />
+    <Compile Include="Lists\AppPermissionsList.vb" />
+    <Compile Include="Lists\AuditFieldList.vb" />
+    <Compile Include="Lists\BargeCargoTransferList.vb" />
+    <Compile Include="Lists\BargeConditionList.vb" />
+    <Compile Include="Lists\BargeConditionUnsentList.vb" />
+    <Compile Include="Lists\BargeCountsInFleetList.vb" />
+    <Compile Include="Lists\BillingEmailAddressList.vb" />
+    <Compile Include="Lists\BoatAisPositionHistorySearch.vb" />
+    <Compile Include="Lists\CargoTransferCargoNumberList.vb" />
+    <Compile Include="Lists\CargoTransferDocumentList.vb" />
+    <Compile Include="Lists\CargoTransferInvoiceDocumentList.vb" />
+    <Compile Include="Lists\CompletedBargeOrdersList.vb" />
+    <Compile Include="Lists\CompletedTripAuditLogList.vb" />
+    <Compile Include="Lists\DeckLogActivityTypeList.vb" />
+    <Compile Include="Lists\DemurrageInvoiceDocumentList.vb" />
+    <Compile Include="Lists\EmailOutboxSendList.vb" />
+    <Compile Include="Lists\FindAnyInvoice.vb" />
+    <Compile Include="Lists\FindBoatPositionHistory.vb" />
+    <Compile Include="Lists\FreightEscalationCalculateSearch.vb" />
+    <Compile Include="Lists\FreightEscalationContactSelect.vb" />
+    <Compile Include="Lists\FreightEscalatorIndexList.vb" />
+    <Compile Include="Lists\FreightInvoiceDocumentList.vb" />
+    <Compile Include="Lists\FuelVendorPricingSearch.vb" />
+    <Compile Include="Lists\BargeEventBillingTicketEventList.vb" />
+    <Compile Include="Lists\BoatCharterMaintenanceList.vb" />
+    <Compile Include="Lists\BoatCharterSearch.vb" />
+    <Compile Include="Lists\BoatFuelPriceSearch.vb" />
+    <Compile Include="Lists\BoatDailyExpenseDateSearch.vb" />
+    <Compile Include="Lists\BargeDailyExpenseDateSearch.vb" />
+    <Compile Include="Lists\BargeEventBillingSearch.vb" />
+    <Compile Include="Lists\BargeExVendorDocumentInboxSearch.vb" />
+    <Compile Include="Lists\BargeTicketBillingSearch.vb" />
+    <Compile Include="Lists\BoatFuelList.vb" />
+    <Compile Include="Lists\BoatInfoList.vb" />
+    <Compile Include="Lists\BoatProductivityModelDateSearch.vb" />
+    <Compile Include="Lists\BoatRoleWatchScheduleSearch.vb" />
+    <Compile Include="Lists\BoatRoleWatchSchedulesList.vb" />
+    <Compile Include="Lists\ChecklistItemRecoveryList.vb" />
+    <Compile Include="Lists\ChecklistItemTemplateAssignmentSearch.vb" />
+    <Compile Include="Lists\ChecklistItemTemplateSearch.vb" />
+    <Compile Include="Lists\DeckLogActivityTypeReminderSearch.vb" />
+    <Compile Include="Lists\DeletedCrewMemberActivityRecoveryList.vb" />
+    <Compile Include="Lists\DeletedDeckLogActivityBargeRecoveryList.vb" />
+    <Compile Include="Lists\DeletedDeckLogActivityRecoveryList.vb" />
+    <Compile Include="Lists\FuelVendorList.vb" />
+    <Compile Include="Lists\GenerateMonthlyCargoStorageBillItemsList.vb" />
+    <Compile Include="Lists\GetCustomerInfo.vb" />
+    <Compile Include="Lists\GetTimeCardEntryIDs.vb" />
+    <Compile Include="Lists\InvoiceDocumentList.vb" />
+    <Compile Include="Lists\LiquidSalespersonList.vb" />
+    <Compile Include="Lists\ListReportSubscriptions.vb" />
+    <Compile Include="Lists\LockStatusSearch.vb" />
+    <Compile Include="Lists\MidnightTowDiagramRecoveryList.vb" />
+    <Compile Include="Lists\OnboardOrderPickupGroupList.vb" />
+    <Compile Include="Lists\OnboardResourceSearch.vb" />
+    <Compile Include="Lists\OnboardSettingGroupSearch.vb" />
+    <Compile Include="Lists\OnboardTripPlannerBargeSearch.vb" />
+    <Compile Include="Lists\OnboardTripPlannerSearch.vb" />
+    <Compile Include="Lists\PartsServiceBillDocumentList.vb" />
+    <Compile Include="Lists\PortalReportList.vb" />
+    <Compile Include="Lists\PortalReportSubscriptionsList.vb" />
+    <Compile Include="Lists\PortalSavedReportCriteriaList.vb" />
+    <Compile Include="Lists\PriceIndexSearch.vb" />
+    <Compile Include="Lists\PurchaseOrderNumList.vb" />
+    <Compile Include="Lists\RebillItemEventSearch.vb" />
+    <Compile Include="Lists\RebillSearch.vb" />
+    <Compile Include="Lists\RiverSegmentDraftList.vb" />
+    <Compile Include="Lists\RiverStateSegmentList.vb" />
+    <Compile Include="Lists\ScheduledTaskList.vb" />
+    <Compile Include="Lists\FormTemplateList.vb" />
+    <Compile Include="Lists\FormSearch.vb" />
+    <Compile Include="Lists\BargeEventSearch.vb" />
+    <Compile Include="Lists\BargeExCodeMapList.vb" />
+    <Compile Include="Lists\BargeExConfigSearch.vb" />
+    <Compile Include="Lists\BargeExDocumentSubTypeList.vb" />
+    <Compile Include="Lists\BargeExEnvironmentList.vb" />
+    <Compile Include="Lists\BargeExTransactionInboxList.vb" />
+    <Compile Include="Lists\BargeExTransactionOutboxList.vb" />
+    <Compile Include="Lists\BargeLocationList.vb" />
+    <Compile Include="Lists\BargeMovementRecoveryList.vb" />
+    <Compile Include="Lists\BargePlacementList.vb" />
+    <Compile Include="Lists\BargePositionDuplicateSearch.vb" />
+    <Compile Include="Lists\BargePositionList.vb" />
+    <Compile Include="Lists\BargeSearch.vb" />
+    <Compile Include="Lists\BargeSeriesSearch.vb" />
+    <Compile Include="Lists\BargeTokenMapFieldValueList.vb" />
+    <Compile Include="Lists\BargeTokenMapList.vb" />
+    <Compile Include="Lists\BargeTokenSearch.vb" />
+    <Compile Include="Lists\BargeTowingTonnageSearch.vb" />
+    <Compile Include="Lists\BoatLocationList.vb" />
+    <Compile Include="Lists\BoatLocationSearch.vb" />
+    <Compile Include="Lists\BoatMidstreamSearch.vb" />
+    <Compile Include="Lists\BoatPositionHistorySearch.vb" />
+    <Compile Include="Lists\BoatPositionList.vb" />
+    <Compile Include="Lists\BoatRoleList.vb" />
+    <Compile Include="Lists\CalendarList.vb" />
+    <Compile Include="Lists\CalendarSearch.vb" />
+    <Compile Include="Lists\CargoDelaySearch.vb" />
+    <Compile Include="Lists\CargoList.vb" />
+    <Compile Include="Lists\CargoRateList.vb" />
+    <Compile Include="Lists\CargoRateSearch.vb" />
+    <Compile Include="Lists\CargoSearch.vb" />
+    <Compile Include="Lists\CargoStockpileList.vb" />
+    <Compile Include="Lists\CargoStorageBillingSearch.vb" />
+    <Compile Include="Lists\CargoTransferTonnageStockpileList.vb" />
+    <Compile Include="Lists\CargoTransferTonnageTicketList.vb" />
+    <Compile Include="Lists\CargoTransferTonnageToList.vb" />
+    <Compile Include="Lists\CargoTransferTonnageTransferList.vb" />
+    <Compile Include="Lists\CargoTransferTrainList.vb" />
+    <Compile Include="Lists\CargoTransferTruckList.vb" />
+    <Compile Include="Lists\BargeSeriesList.vb" />
+    <Compile Include="Lists\BoatTrafficSearch.vb" />
+    <Compile Include="Lists\BargeTierGroupList.vb" />
+    <Compile Include="Lists\CrewMemberActivityLogRecoveryList.vb" />
+    <Compile Include="Lists\DeckLogActivityGroupList.vb" />
+    <Compile Include="Lists\DeckLogActivitySearch.vb" />
+    <Compile Include="Lists\EventInvoicesList.vb" />
+    <Compile Include="Lists\FreightContractGroupList.vb" />
+    <Compile Include="Lists\GetTaskIDs.vb" />
+    <Compile Include="Lists\OnboardOrderDuplicateSearch.vb" />
+    <Compile Include="Lists\OnboardOrderMakeTowList.vb" />
+    <Compile Include="Lists\ShiftPlannerBargeSearch.vb" />
+    <Compile Include="Lists\OnboardOrderShipList.vb" />
+    <Compile Include="Lists\ShipConsignedToOpenTicketList.vb" />
+    <Compile Include="Lists\TaskRecoveryList.vb" />
+    <Compile Include="Lists\TicketDocumentList.vb" />
+    <Compile Include="Lists\TicketToCloseList.vb" />
+    <Compile Include="Lists\TierGroupFilterSearch.vb" />
+    <Compile Include="Lists\TimeCardEntrySelect.vb" />
+    <Compile Include="Lists\UnitTowEmrDowntimeEmailList.vb" />
+    <Compile Include="Lists\UnitTowEventTypeList.vb" />
+    <Compile Include="Lists\UnitTowOnboardInboxErrList.vb" />
+    <Compile Include="Lists\UnitTowPendingBillsList.vb" />
+    <Compile Include="Lists\UnitTowTripAuditList.vb" />
+    <Compile Include="Lists\UnitTowPendingDowntimeEmailList.vb" />
+    <Compile Include="Lists\VendorBillItemList.vb" />
+    <Compile Include="Lists\VendorBusinessUnitList.vb" />
+    <Compile Include="Lists\VendorPortalGroupSearch.vb" />
+    <Compile Include="Lists\CoverSubTypeList.vb" />
+    <Compile Include="Lists\CoverSubTypeSearch.vb" />
+    <Compile Include="Lists\CrewMemberList.vb" />
+    <Compile Include="Lists\CustomerPortalGroupSearch.vb" />
+    <Compile Include="Lists\DemurrageBillingSearch.vb" />
+    <Compile Include="Lists\DraftSurveyInfo.vb" />
+    <Compile Include="Lists\FleetPositionHistorySearch.vb" />
+    <Compile Include="Lists\FreightContractList.vb" />
+    <Compile Include="Lists\FreightBillingSearch.vb" />
+    <Compile Include="Lists\CoverHandlingTypeList.vb" />
+    <Compile Include="Lists\CrewMemberSearch.vb" />
+    <Compile Include="Lists\CustomerFreightCodeList.vb" />
+    <Compile Include="Lists\DeckLogActivityTypeSearch.vb" />
+    <Compile Include="Lists\DivisionCodeList.vb" />
+    <Compile Include="Lists\DivisionCodeSearch.vb" />
+    <Compile Include="Lists\DropPickupFeeSearch.vb" />
+    <Compile Include="Lists\FacilityLocationByTypeList.vb" />
+    <Compile Include="Lists\FreightContractSearch.vb" />
+    <Compile Include="Lists\FreightInvoiceFormatList.vb" />
+    <Compile Include="Lists\GeneratedCargoStorageBillItemList.vb" />
+    <Compile Include="Lists\CargoTransferBargeList.vb" />
+    <Compile Include="Lists\CargoTransferBillingSearch.vb" />
+    <Compile Include="Lists\CargoTransferList.vb" />
+    <Compile Include="Lists\CargoTransferShipList.vb" />
+    <Compile Include="Lists\ColorPairList.vb" />
+    <Compile Include="Lists\CommodityList.vb" />
+    <Compile Include="Lists\CommoditySearch.vb" />
+    <Compile Include="Lists\ConsignFacilityList.vb" />
+    <Compile Include="Lists\BillingTicketsSearch.vb" />
+    <Compile Include="Lists\BillingAdjustmentsSearch.vb" />
+    <Compile Include="Lists\ControlAuthorizationList.vb" />
+    <Compile Include="Lists\EquipmentMaintenanceSearch.vb" />
+    <Compile Include="Lists\FacilityBerthList.vb" />
+    <Compile Include="Lists\FacilityBerthSearch.vb" />
+    <Compile Include="Lists\CustomizationList.vb" />
+    <Compile Include="Lists\DailyCustomerReportList.vb" />
+    <Compile Include="Lists\FunctionalAreaList.vb" />
+    <Compile Include="Lists\HighWaterEventSearch.vb" />
+    <Compile Include="Lists\InventoryAdjustmentSearch.vb" />
+    <Compile Include="Lists\InvoiceExportList.vb" />
+    <Compile Include="Lists\InvoiceSearch.vb" />
+    <Compile Include="Lists\LaborCostScheduleList.vb" />
+    <Compile Include="Lists\LaborRateList.vb" />
+    <Compile Include="Lists\LineBoatList.vb" />
+    <Compile Include="Lists\LineBoatScheduleList.vb" />
+    <Compile Include="Lists\OnboardCommunicationAlertList.vb" />
+    <Compile Include="Lists\DeckLogActivityRecoveryList.vb" />
+    <Compile Include="Lists\OnboardErrorLogList.vb" />
+    <Compile Include="Lists\OnboardInboxList.vb" />
+    <Compile Include="Lists\OnboardOrderCoverHandlingList.vb" />
+    <Compile Include="Lists\OnboardOrderBoatList.vb" />
+    <Compile Include="Lists\OnboardOrderMidstreamInList.vb" />
+    <Compile Include="Lists\OnboardOrderMidstreamOutList.vb" />
+    <Compile Include="Lists\OnboardOrderSearch.vb" />
+    <Compile Include="Lists\OnboardOrderShiftList.vb" />
+    <Compile Include="Lists\OnboardOrderStatusSearch.vb" />
+    <Compile Include="Lists\OnboardTransactionLogList.vb" />
+    <Compile Include="Lists\OperatorList.vb" />
+    <Compile Include="Lists\PartsServiceBillSearch.vb" />
+    <Compile Include="Lists\PartsServiceCodeList.vb" />
+    <Compile Include="Lists\PartsServiceCodeSearch.vb" />
+    <Compile Include="Lists\PartsServiceRateSearch.vb" />
+    <Compile Include="Lists\RigListCustomerOwned.vb" />
+    <Compile Include="Lists\RiverAreaList.vb" />
+    <Compile Include="Lists\RiverAreaPriceZoneSearch.vb" />
+    <Compile Include="Lists\RiverAreaSearch.vb" />
+    <Compile Include="Lists\RiverAreaSegmentList.vb" />
+    <Compile Include="Lists\RiverConfluenceList.vb" />
+    <Compile Include="Lists\ShiftTurnBargeList.vb" />
+    <Compile Include="Lists\ShipRateSearch.vb" />
+    <Compile Include="Lists\ShipTicketBillingSearch.vb" />
+    <Compile Include="Lists\TicketCommentList.vb" />
+    <Compile Include="Lists\TicketEventDelayList.vb" />
+    <Compile Include="Lists\TicketList.vb" />
+    <Compile Include="Lists\FleetBoatList.vb" />
+    <Compile Include="Lists\CustomerList.vb" />
+    <Compile Include="Lists\CustomerSearch.vb" />
+    <Compile Include="Lists\EventRateSearch.vb" />
+    <Compile Include="Lists\EventTypeList.vb" />
+    <Compile Include="Lists\FacilityLocationList.vb" />
+    <Compile Include="Lists\FacilityLocationSearch.vb" />
+    <Compile Include="Lists\FleetList.vb" />
+    <Compile Include="Lists\FleetSearch.vb" />
+    <Compile Include="Lists\FuelPriceScheduleSearch.vb" />
+    <Compile Include="Lists\FuelRateSearch.vb" />
+    <Compile Include="Lists\GlobalSettingList.vb" />
+    <Compile Include="Lists\GlobalSettingTypeList.vb" />
+    <Compile Include="Lists\HighWaterRateSearch.vb" />
+    <Compile Include="Lists\HighWaterScheduleSearch.vb" />
+    <Compile Include="Lists\ManageReportsSearch.vb" />
+    <Compile Include="Lists\PictureList.vb" />
+    <Compile Include="Lists\ReportCategoryList.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Lists\ParameterTypeList.vb" />
+    <Compile Include="Lists\ReportParameterTypeSearch.vb" />
+    <Compile Include="Lists\RiverList.vb" />
+    <Compile Include="Lists\RiverSearch.vb" />
+    <Compile Include="Lists\ListBase.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Lists\RoleList.vb" />
+    <Compile Include="Lists\RoleSearch.vb" />
+    <Compile Include="Lists\ShipLocationList.vb" />
+    <Compile Include="Lists\ShipLocationSearch.vb" />
+    <Compile Include="Lists\TicketEventSearch.vb" />
+    <Compile Include="Lists\TicketSearch.vb" />
+    <Compile Include="Lists\TierGroupSearch.vb" />
+    <Compile Include="Lists\TierList.vb" />
+    <Compile Include="Lists\TierSearch.vb" />
+    <Compile Include="Lists\TowDiagramInboundBargeTicketList.vb" />
+    <Compile Include="Lists\TrainTicketSearch.vb" />
+    <Compile Include="Lists\TruckTicketSearch.vb" />
+    <Compile Include="Lists\UserFleetRoleSearch.vb" />
+    <Compile Include="Lists\UserFleetViewHeaderList.vb" />
+    <Compile Include="Lists\UserFleetViewItemList.vb" />
+    <Compile Include="Lists\UserFleetViewList.vb" />
+    <Compile Include="Lists\UserSearch.vb" />
+    <Compile Include="Lists\ValidationList.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Lists\ValidationTypeList.vb" />
+    <Compile Include="Lists\VendorBillItemEventPartsServiceSearch.vb" />
+    <Compile Include="Lists\VendorBillSearch.vb" />
+    <Compile Include="Lists\VendorSearch.vb" />
+    <Compile Include="Lists\VesselRecordRecoveryList.vb" />
+    <Compile Include="Lists\ViewFleetColorList.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="Saas\SaasExtensions.vb" />
+    <Compile Include="Saas\NetCoreContext.vb" />
+    <Compile Include="Saas\SaasShim.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

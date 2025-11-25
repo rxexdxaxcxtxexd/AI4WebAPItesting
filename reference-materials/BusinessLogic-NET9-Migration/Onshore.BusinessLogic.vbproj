@@ -1,0 +1,102 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- Target Frameworks - Multi-targeting for Option B test -->
+    <TargetFrameworks>net48;net9.0-windows</TargetFrameworks>
+
+    <!-- Basic Settings -->
+    <OutputType>Library</OutputType>
+    <AssemblyName>BargeOps.Onshore.BusinessLogic</AssemblyName>
+    <RootNamespace>BargeOps.Onshore.BusinessLogic</RootNamespace>
+
+    <!-- VB.NET Compiler Settings (preserved from original) -->
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>On</OptionStrict>
+    <OptionCompare>Binary</OptionCompare>
+    <LangVersion>latest</LangVersion>
+
+    <!-- Platform Settings -->
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+
+    <!-- Windows Features (needed for Windows Forms) -->
+    <UseWindowsForms>true</UseWindowsForms>
+
+    <!-- Suppress migration warnings -->
+    <NoWarn>$(NoWarn);NETSDK1147;40000;42016;42017;42018;42019;42032;42353;42354;42355</NoWarn>
+
+    <!-- Output Path -->
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <DocumentationFile>BargeOps.Onshore.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <!-- .NET 9.0 Required Packages (only for net9.0-windows) -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-windows'">
+    <!-- Database -->
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+
+    <!-- Drawing APIs -->
+    <PackageReference Include="System.Drawing.Common" Version="9.0.0" />
+
+    <!-- Windows Compatibility Pack (includes many .NET Framework APIs) -->
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="9.0.0" />
+
+    <!-- Configuration -->
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.0" />
+  </ItemGroup>
+
+  <!-- Csg.* Framework Dependencies (from lib folder) -->
+  <!-- Only reference for .NET Framework 4.8 build -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <Reference Include="Csg.AppFramework">
+      <HintPath>..\..\lib\Csg.AppFramework.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+
+    <Reference Include="Csg.AppFramework.Core.BindableBase">
+      <HintPath>..\..\lib\Csg.AppFramework.Core.BindableBase.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+
+    <Reference Include="Csg.AppFramework.Server.DataPortal">
+      <HintPath>..\..\lib\Csg.AppFramework.Server.DataPortal.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+
+    <Reference Include="Csg.Diagnostics.ExceptionManagement">
+      <HintPath>..\..\lib\Csg.Diagnostics.ExceptionManagement.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+
+    <Reference Include="Csg.Security.Cryptography">
+      <HintPath>..\..\lib\Csg.Security.Cryptography.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+
+    <Reference Include="Csg.Utilities">
+      <HintPath>..\..\lib\Csg.Utilities.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+
+    <Reference Include="Csg.Windows.Forms.Security.4">
+      <HintPath>..\..\lib\Csg.Windows.Forms.Security.4.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+
+    <!-- Additional dependencies from lib folder -->
+    <Reference Include="Csg.AppFramework.Resources">
+      <HintPath>..\..\lib\Csg.AppFramework.Resources.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+
+    <Reference Include="Csg.Constants">
+      <HintPath>..\..\lib\Csg.Constants.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+
+    <Reference Include="Microsoft.ApplicationBlocks.ExceptionManagement">
+      <HintPath>..\..\lib\Microsoft.ApplicationBlocks.ExceptionManagement.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
